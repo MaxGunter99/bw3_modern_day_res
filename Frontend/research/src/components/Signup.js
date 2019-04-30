@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { signUp } from "../Actions/Index";
-import { Link } from 'react-router-dom';
 import '../App.css';
 
 

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 function ArticleList(props) {
     function routeToItem(ev, article) {

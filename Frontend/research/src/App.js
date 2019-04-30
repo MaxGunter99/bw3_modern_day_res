@@ -1,11 +1,9 @@
 import axios from "axios";
 import React from 'react';
-import Home from "./components/Home";
 import ArticleList from "./components/ArticleList";
 import Article from "./components/Article";
 import ArticleForm from "./components/ArticleForm";
 import {
-  BrowserRouter as Router,
   Route,
   NavLink,
 } from "react-router-dom";
@@ -18,13 +16,15 @@ class App extends React.Component {
     super();
     this.state = {
       articles: [],
-      currentArticle: null
+      currentArticle: null,
     };
   }
 
   componentDidMount() {
     axios
-      .get("http://localhost:3333/items")
+      .get('https://rticle.herokuapp.com/api/user/articles', { 
+        headers: { Authorization: localStorage.getItem('token') } 
+       })
       .then(res => {
         console.log(res);
         this.setState({
@@ -40,14 +40,14 @@ class App extends React.Component {
 
   addArticle = article => {
     axios
-      .post("http://localhost:3333/items", article)
+      .post("https://rticle.herokuapp.com/api/user/articles", article)
       .then(res => this.setState({ articles: res.data }))
       .catch(err => console.log(err));
   };
 
   deleteArticle = id => {
     axios
-      .delete(`http://localhost:3333/items/${id}`)
+      .delete(`https://rticle.herokuapp.com/api/${id}`)
       .then(res => {
         this.setState({ articles: res.data });
         this.props.history.push("/ArticleList");
@@ -57,7 +57,7 @@ class App extends React.Component {
 
   updateArticle = article => {
     axios
-      .put(`http://localhost:3333/items/${article.id}`, article)
+      .put(`https://rticle.herokuapp.com/api/${article.id}`, article)
       .then(res => {
         this.setState({ articles: res.data, currentArticle: null });
         this.props.history.push("/ArticleList");
@@ -65,29 +65,96 @@ class App extends React.Component {
       .catch(err => console.log(err));
   };
 
+  // componentDidMount() {
+  //   axios
+  //     .get("http://localhost:3333/items")
+  //     .then(res => {
+  //       console.log(res);
+  //       this.setState({
+  //         articles: res.data
+  //       });
+  //     })
+  //     .catch(function (err) {
+  //       console.log(err);
+  //     });
+
+  //   console.log("after the get request");
+  // }
+
+  // addArticle = article => {
+  //   axios
+  //     .post("http://localhost:3333/items", article)
+  //     .then(res => this.setState({ articles: res.data }))
+  //     .catch(err => console.log(err));
+  // };
+
+  // deleteArticle = id => {
+  //   axios
+  //     .delete(`http://localhost:3333/items/${id}`)
+  //     .then(res => {
+  //       this.setState({ articles: res.data });
+  //       this.props.history.push("/ArticleList");
+  //     })
+  //     .catch(err => console.log(err));
+  // };
+
+  // updateArticle = article => {
+  //   axios
+  //     .put(`http://localhost:3333/items/${article.id}`, article)
+  //     .then(res => {
+  //       this.setState({ articles: res.data, currentArticle: null });
+  //       this.props.history.push("/ArticleList");
+  //     })
+  //     .catch(err => console.log(err));
+  // };
+
   setupUpdate = article => {
     this.setState({ currentArticle: article });
 
     this.props.history.push("/ArticleForm");
   };
 
+  logOut = () => {
+    localStorage.removeItem("token");
+    this.props.checkSignIn();
+    this.props.history.push("/sign-in");
+  };
+
   render() {
-    console.log(this.state);
+
+    let loggedIn = (
+      <nav className='header'>
+        <h1>Modern Day Researcher</h1>
+        <div>
+          <NavLink to="/ArticleList">Articles</NavLink>
+          <NavLink to="/ArticleForm">Add Article</NavLink>
+          <NavLink to='/sign-in' className='sign' onClick={this.logOut} >Log Out</NavLink>
+        </div>
+      </nav>
+    )
+
+    let loggedOut = (
+      <nav className='header'>
+        <h1>Modern Day Researcher</h1>
+        <div>
+          <NavLink to='/sign-in'>Login</NavLink>
+          <NavLink to='/sign-up'>Signup</NavLink>
+          <NavLink to="/ArticleList">Articles</NavLink>
+          <NavLink to="/ArticleForm">Add Article</NavLink>
+        </div>
+      </nav>
+    )
+
     return (
       <div className="App">
-        <nav className='header'>
-          <h1>Modern Day Researcher</h1>
-          <div>
-            <NavLink to='/sign-in'>Login</NavLink>
-            <NavLink to='/sign-up'>Signup</NavLink>
-            <NavLink to="/ArticleList">Articles</NavLink>
-            <NavLink to="/ArticleForm">Add Article</NavLink>
-          </div>
-        </nav>
+        {this.props.token ? (
+          <div className='navBar'>{loggedIn}</div>
+        ) : (
+            <div>{loggedOut}</div>
+          )}
 
         <Route path='/sign-in' component={Login} />
         <Route path='/sign-up' component={Signup} />
-        <Route exact path="/" component={Home} />
 
         <Route
           exact

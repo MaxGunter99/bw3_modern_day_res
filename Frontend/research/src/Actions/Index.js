@@ -15,7 +15,7 @@ export const signUp = userInfo => dispatch => {
             console.log(res);
         })
         .catch(err => {
-            dispatch({ type: SIGN_UP_FAILURE, payload: err.message })
+            dispatch({ type: SIGN_UP_FAILURE, payload: err.message}, alert('Error'))
         })
 }
 
@@ -34,7 +34,7 @@ export const login = userInfo => dispatch => {
             localStorage.setItem('user_id', res.data.user_id);
         })
         .catch(err => {
-            dispatch({ type: SIGN_IN_FAILURE, payload: err.message })
+            dispatch({ type: SIGN_IN_FAILURE, payload: err.message }, alert('Error'))
         })
 }
 
