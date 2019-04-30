@@ -88,7 +88,7 @@ const reducer = (state = initialState, action) => {
         case GET_LINK_SUCCESS:
             return {
                 ...state,
-                link: action.payload,
+                links: action.payload,
                 fetchingLink: false
             }
         case GET_LINK_FAILURE:

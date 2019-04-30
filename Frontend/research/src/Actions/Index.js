@@ -55,10 +55,10 @@ export const GET_LINKS_FAILURE = "GET_LINKS_FAILURE";
 
 export const getLinks = id => dispatch => {
     dispatch({ type: GET_LINKS })
-    axios.get(`https://rticle.herokuapp.com/api/${id}`)
+    axios.get(`https://rticle.herokuapp.com/api/user/${id}`, {headers: {Authorization: localStorage.getItem('token')}})
         .then(res => {
             console.log(res);
-            dispatch({ type: GET_LINKS_SUCCESS, payload: res.data.data })
+            dispatch({ type: GET_LINKS_SUCCESS, payload: res.data })
         })
         .catch(err => {
             console.log(err)
@@ -97,7 +97,7 @@ export const addLink = link => dispatch => {
     return axios.post('https://rticle.herokuapp.com/api/user/articles', link, {headers: {Authorization: localStorage.getItem('token')}})
         .then(res => {
             console.log(res);
-            dispatch({ type: ADD_LINK_SUCCESS, payload: res.data.data })
+            dispatch({ type: ADD_LINK_SUCCESS, payload: res.data })
         })
         .catch(err => {
             console.log(err);
@@ -115,7 +115,7 @@ export const deleteLink = () => dispatch => {
     axios.delete('')
         .then(res => {
             console.log(res);
-            dispatch({ type: DELETE_LINK_SUCCESS, payload: res.data.data })
+            dispatch({ type: DELETE_LINK_SUCCESS, payload: res.data })
         })
         .catch(err => {
             console.log(err);

@@ -22,8 +22,8 @@ class App extends React.Component {
 
   componentDidMount() {
     axios
-      .get('https://rticle.herokuapp.com/api/user/articles', { 
-        headers: { Authorization: localStorage.getItem('token') } 
+      .get('https://rticle.herokuapp.com/api/user/articles', {
+        headers: { Authorization: localStorage.getItem('token') }
       })
       .then(res => {
         console.log(res);
@@ -38,39 +38,6 @@ class App extends React.Component {
     console.log("after the get request");
   }
 
-  // addArticle = link => {
-  //   axios
-  //     .post("https://rticle.herokuapp.com/api/user/articles", link, { headers: { Authorization: localStorage.getItem('token') }})
-  //     .then(res => this.setState({ articles: res.data }))
-  //     .catch(err => console.log(err));
-  // };
-
-  // deleteArticle = id => {
-  //   axios
-  //     .delete(`https://rticle.herokuapp.com/api/${id}`)
-  //     .then(res => {
-  //       this.setState({ articles: res.data });
-  //       this.props.history.push("/ArticleList");
-  //     })
-  //     .catch(err => console.log(err));
-  // };
-
-  // updateArticle = article => {
-  //   axios
-  //     .put(`https://rticle.herokuapp.com/api/${article.id}`, article)
-  //     .then(res => {
-  //       this.setState({ articles: res.data, currentArticle: null });
-  //       this.props.history.push("/ArticleList");
-  //     })
-  //     .catch(err => console.log(err));
-  // };
-
-  setupUpdate = link => {
-    this.setState({ currentLink: link });
-
-    this.props.history.push("/ArticleForm");
-  };
-
   logOut = () => {
     localStorage.removeItem("token");
     this.props.checkSignIn();
@@ -78,7 +45,6 @@ class App extends React.Component {
   };
 
   render() {
-
     let loggedIn = (
       <nav className='header'>
         <h1>Modern Day Researcher</h1>
@@ -113,9 +79,7 @@ class App extends React.Component {
         <Route path='/sign-in' component={Login} />
         <Route path='/sign-up' component={Signup} />
 
-        <Route
-          exact
-          path="/ArticleList"
+        <Route exact path="/ArticleList" 
           render={props => (
             <ArticleList
               {...props}
@@ -123,8 +87,7 @@ class App extends React.Component {
             />
           )}
         />
-        <Route
-          path="/ArticleList/:id"
+        <Route path="/ArticleList/:id"
           render={props => (
             <Article
               {...props}
@@ -134,8 +97,7 @@ class App extends React.Component {
             />
           )}
         />
-        <Route
-          path="/ArticleForm"
+        <Route path="/ArticleForm"
           render={props => (
             <ArticleForm
               {...props}
@@ -151,3 +113,29 @@ class App extends React.Component {
 }
 
 export default App;
+
+  // deleteArticle = id => {
+  //   axios
+  //     .delete(`https://rticle.herokuapp.com/api/${id}`)
+  //     .then(res => {
+  //       this.setState({ articles: res.data });
+  //       this.props.history.push("/ArticleList");
+  //     })
+  //     .catch(err => console.log(err));
+  // };
+
+  // updateArticle = article => {
+  //   axios
+  //     .put(`https://rticle.herokuapp.com/api/${article.id}`, article)
+  //     .then(res => {
+  //       this.setState({ articles: res.data, currentArticle: null });
+  //       this.props.history.push("/ArticleList");
+  //     })
+  //     .catch(err => console.log(err));
+  // };
+
+  // setupUpdate = link => {
+  //   this.setState({ currentLink: link });
+
+  //   this.props.history.push("/ArticleForm");
+  // };

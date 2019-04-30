@@ -1,46 +1,44 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { addLink } from '../Actions/Index'
 
-    export class ArticleForm extends Component {
-        state = {
+export class ArticleForm extends Component {
+    state = {
+        link: {
+            url: "",
+            category: "",
+            user_id: '',
+            is_read: false
+        }
+    };
+
+    handleChange = e => {
+        this.setState({
+            link: { ...this.state.link, [e.target.name]: e.target.value }
+        });
+    };
+
+    handleSubmit = () => {
+        const cat = this.state.category
+        this.props.addLink({ ...this.state.link, category: cat })
+        this.setState({
             link: {
-                url: "",
-                category: "",
-                user_id: '',
-                is_read: false
+                url: '',
+                category: '',
+                username: '',
+                user_id: localStorage.getItem('user_id')
             }
-        };
-
-        // handleChange = e => {
-        //     this.setState({
-        //         [e.target.name]: e.target.value
-        //     });
-        // };
-
-        handleChange = e => {
-            this.setState({
-                link: {...this.state.link, [e.target.name]: e.target.value}
-            });
-        };
-
-        handleSubmit = () => {
-            const cat = this.state.category
-            this.props.addLink({...this.state.link, category: cat})
-            this.setState({
-                link: {
-                    url: '',
-                    category: '',
-                    username: '',
-                    user_id: localStorage.getItem('user_id')
-                }
-            });
-            this.props.history.push("/ArticleList");
-        };
+        });
+        this.props.history.push("/ArticleList");
+    };
 
     cataWorld = event => {
         event.preventDefault();
         this.setState({ category: 'world' })
+    }
+    cataTech = event => {
+        event.preventDefault();
+        this.setState({ category: 'technology' })
     }
 
     render() {
@@ -64,8 +62,8 @@ import { addLink } from '../Actions/Index'
                 </form>
 
                 <button onClick={this.cataWorld}>World</button>
+                <button onClick={this.cataTech}>Technology</button>
                 <button onClick={this.handleSubmit}>Add Article</button>
-
             </div>
         );
     }

@@ -8,7 +8,7 @@
   pointer-events: none;
 }
 
-.App-header {
+nav.header {
   background-color: #282c34;
   display: flex;
   flex-direction: column;
@@ -16,6 +16,7 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  padding: 10px;
 }
 
 .Logo{
@@ -84,7 +85,7 @@ textarea#textarea.form-control{
   margin-left: 5px;
 }
 
-nav{
+header nav{
   display: inline-flex;
   align-items: center;
   justify-content: space-between;
@@ -94,11 +95,11 @@ nav{
 }
 
 nav a{
-  color: black;
+  color: white;
   font-size: 30px;
   padding: 20px;
   border-radius: 10px;
-  font-size: .7em;
+  font-size: .8em;
   text-decoration: none;
 }
 
@@ -133,7 +134,8 @@ nav a{
 
 
 nav a:hover{
-  text-decoration: underline;
+  background-color: white;
+  color: black;
 }
 
 nav div h1{
@@ -153,13 +155,12 @@ nav div h1{
   min-height: 90vh;
 }
 
-.ArticleCard{
+.item-title-wrapper{
   background-color: white;
   width: 40%;
-  margin: 10px;
-  height: 350px;
   border-radius: 10px;
   padding: 5px;
+  font-size: 15px;
 }
 
 .ArticleCard img{
