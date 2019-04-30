@@ -1,0 +1,251 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.App-header {
+  background-color: #282c34;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.Logo{
+  -webkit-animation: text-focus-in 1s cubic-bezier(0.550, 0.085, 0.680, 0.530) 0.5s both;
+	animation: text-focus-in 1s cubic-bezier(0.550, 0.085, 0.680, 0.530) 0.5s both;
+}
+
+@-webkit-keyframes text-focus-in {
+  0% {
+    -webkit-filter: blur(12px);
+            filter: blur(12px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-filter: blur(0px);
+            filter: blur(0px);
+    opacity: 1;
+  }
+}
+@keyframes text-focus-in {
+  0% {
+    -webkit-filter: blur(12px);
+            filter: blur(12px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-filter: blur(0px);
+            filter: blur(0px);
+    opacity: 1;
+  }
+}
+
+
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.form-label{
+  font-size: 20px;
+  margin-right: 10px;
+}
+
+textarea#textarea.form-control{
+  font-size: 15px;
+  min-width: 92%;
+  max-width: 92%;
+  min-height: 200px;
+  margin: 0 auto;
+  padding: 10px;
+  line-height: 20px;
+}
+
+.select{
+  display: inline-flex;
+  align-items: center;
+  margin-left: 5px;
+}
+
+nav{
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 70px;
+  margin-bottom: 10px;
+}
+
+nav a{
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  font-size: .7em;
+  text-decoration: none;
+}
+
+@-webkit-keyframes pulsate-fwd {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  50% {
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+@keyframes pulsate-fwd {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  50% {
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+
+nav a:hover{
+  text-decoration: underline;
+}
+
+nav div h1{
+  margin-left: 10px;
+  border-bottom: 1px solid white;
+}
+
+.ArticleList{
+  border-top: 2px solid white;
+  background-color: rgba(167, 164, 164, 0.678);
+  background-attachment: fixed;
+  background-size: 100%;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  min-height: 90vh;
+}
+
+.ArticleCard{
+  background-color: white;
+  width: 40%;
+  margin: 10px;
+  height: 350px;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.ArticleCard img{
+  width: 100%;
+  max-height: 300px;
+  border-radius: 10px;
+}
+
+.updateAndAdd{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 40%;
+  background-color: #282c34;
+  color: white;
+  padding: 10px;
+  border-radius: 20px;
+  margin: 0 auto;
+}
+
+.addFormContainer{
+  background-image: url('https://images.pexels.com/photos/325185/pexels-photo-325185.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+  background-attachment: fixed;
+  background-size: 100%;
+  min-height: 85vh;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.updateAndAdd input{
+  height: 30px;
+  margin: 10px;
+}
+
+
+.ArticleWrapper{
+  width: 100%;
+  min-height: 80vh;
+  background-image: url('https://images.pexels.com/photos/325185/pexels-photo-325185.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+  background-attachment: fixed;
+  background-size: 100%;
+}
+
+.ArticleImage img{
+  width: 50%;
+  height: auto;
+  border-radius: 0 0 10px 10px;
+  padding: 5px;
+  padding-top: 0px;
+  background-color: white;
+}
+
+.description{
+  margin-top: 0px;
+  background-color: white;
+  width: 80%;
+  padding: 10px;
+  margin: 0 auto;
+  margin-top: 20px;
+  border-radius: 10px;
+}
+
+.ArticleButtons{
+  height: 30px;
+  margin: 20px;
+  border-radius: 10px;
+  background-color: white;
+  font-size: 20px;
+}
+
+.ArticleButtons:hover{
+  color: white;
+  background-color: black;
+  transition: .5s;
+  -webkit-animation: pulsate-fwd 0.5s ease-in-out infinite both;
+	animation: pulsate-fwd 0.5s ease-in-out infinite both;
+}
+
+.editArticleButton{
+  height: 30px;
+  width: 95%;
+  border-radius: 10px;
+  margin: 0 auto;
+  font-size: 1em;
+}
+
+.editArticleButton:hover{
+  color: white;
+  background-color: black;
+}
