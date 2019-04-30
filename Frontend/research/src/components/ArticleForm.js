@@ -63,7 +63,7 @@ export default class ArticleForm extends React.Component {
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit}>
+            <form onSubmit={this.handleSubmit} className='AddFormContainer'>
                 <input
                     type="text"
                     name="name"

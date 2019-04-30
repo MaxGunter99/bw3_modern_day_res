@@ -9,6 +9,9 @@ import {
   Route,
   NavLink,
 } from "react-router-dom";
+import './App.css'
+import Login from "./components/Login";
+import Signup from "./components/Signup";
 
 class App extends React.Component {
   constructor() {
@@ -72,18 +75,20 @@ class App extends React.Component {
     console.log(this.state);
     return (
       <div className="App">
-        <nav>
+        <nav className='header'>
           <h1>Modern Day Researcher</h1>
           <div>
-            <NavLink exact to="/">
-              Home
-            </NavLink>
+            <NavLink to='/sign-in'>Login</NavLink>
+            <NavLink to='/sign-up'>Signup</NavLink>
             <NavLink to="/ArticleList">Articles</NavLink>
             <NavLink to="/ArticleForm">Add Article</NavLink>
           </div>
         </nav>
 
+        <Route path='/sign-in' component={Login} />
+        <Route path='/sign-up' component={Signup} />
         <Route exact path="/" component={Home} />
+
         <Route
           exact
           path="/ArticleList"

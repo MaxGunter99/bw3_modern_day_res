@@ -94,7 +94,8 @@ nav{
 }
 
 nav a{
-  color: white;
+  color: black;
+  font-size: 30px;
   padding: 20px;
   border-radius: 10px;
   font-size: .7em;
