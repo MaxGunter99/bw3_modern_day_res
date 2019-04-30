@@ -1,24 +1,21 @@
 import React from 'react';
 
 function ArticleList(props) {
-    function routeToItem(ev, article) {
+    function routeToItem(ev, link) {
         ev.preventDefault();
-        props.history.push(`/ArticleList/${article.id}`);
+        props.history.push(`/ArticleList/${link.id}`);
     }
+    
     return (
         <div className="ArticleList">
-            {props.articles.map(article=> (
+            {props.links.map(link=> (
                 <div
-                    onClick={event => routeToItem(event, article)}
+                    onClick={event => routeToItem(event, link)}
                     className="item-card"
-                    key={article.id}
+                    key={link.id}
                 >
-                    <img
-                        className="item-list-image"
-                        src={article.url}
-                        alt={article.category}
-                    />
-                    <p>{article.name}</p>
+                    <p>{link.url}</p>
+                    <p>{link.category}</p>
                 </div>
             ))}
         </div>

@@ -2,39 +2,41 @@ import React, {Component} from "react";
 import { connect } from 'react-redux';
 import { addLink } from '../Actions/Index'
 
-export class ArticleForm extends Component {
-    state = {
-        link: {
-            url: "",
-            category: "",
-            user_id: '',
-            is_read: false
-        }
-    };
+    export class ArticleForm extends Component {
+        state = {
+            link: {
+                url: "",
+                category: "",
+                user_id: '',
+                is_read: false
+            }
+        };
 
-    handleChange = e => {
-        this.setState({
-            [e.target.name]: e.target.value
-        });
-    };
+        // handleChange = e => {
+        //     this.setState({
+        //         [e.target.name]: e.target.value
+        //     });
+        // };
 
-    // handleChange = e => {
-    //     this.setState({
-    //         link: {...this.state.link, [e.target.name]: e.target.value}
-    //     });
-    // };
+        handleChange = e => {
+            this.setState({
+                link: {...this.state.link, [e.target.name]: e.target.value}
+            });
+        };
 
-    handleSubmit = () => {
-        this.props.addLink(this.state)
-        this.setState({
-            url: this.state.url,
-            category: this.state.category,
-            username: this.state.username,
-            user_id: localStorage.getItem('user_id')
-        });
-        // this.props.history.push("/ArticleList");
-        console.log(this.state)
-    };
+        handleSubmit = () => {
+            const cat = this.state.category
+            this.props.addLink({...this.state.link, category: cat})
+            this.setState({
+                link: {
+                    url: '',
+                    category: '',
+                    username: '',
+                    user_id: localStorage.getItem('user_id')
+                }
+            });
+            this.props.history.push("/ArticleList");
+        };
 
     cataWorld = event => {
         event.preventDefault();
@@ -47,14 +49,14 @@ export class ArticleForm extends Component {
                 <form onSubmit={this.handleSubmit} className='AddFormContainer'>
                     <input
                         name="url"
-                        value={this.state.url || ''}
+                        value={this.state.link.url || ''}
                         onChange={this.handleChange}
                         placeholder="Url"
                         className='Input'
                     />
                     <input
                         name='username'
-                        value={this.state.username || ''}
+                        value={this.state.link.username || ''}
                         placeholder='Add a User to share with'
                         onChange={this.handleChange}
                         className='Input'
@@ -69,9 +71,9 @@ export class ArticleForm extends Component {
     }
 }
 
-export default connect (
+export default connect(
     null,
-   { addLink }
+    { addLink }
 )(ArticleForm);
 
 

@@ -15,8 +15,8 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      articles: [],
-      currentArticle: null,
+      links: [],
+      currentLink: null,
     };
   }
 
@@ -28,7 +28,7 @@ class App extends React.Component {
       .then(res => {
         console.log(res);
         this.setState({
-          articles: res.data
+          links: res.data
         });
       })
       .catch(function (err) {
@@ -65,8 +65,8 @@ class App extends React.Component {
   //     .catch(err => console.log(err));
   // };
 
-  setupUpdate = article => {
-    this.setState({ currentArticle: article });
+  setupUpdate = link => {
+    this.setState({ currentLink: link });
 
     this.props.history.push("/ArticleForm");
   };
@@ -119,7 +119,7 @@ class App extends React.Component {
           render={props => (
             <ArticleList
               {...props}
-              articles={this.state.articles}
+              links={this.state.links}
             />
           )}
         />
@@ -128,9 +128,9 @@ class App extends React.Component {
           render={props => (
             <Article
               {...props}
-              articles={this.state.articles}
+              links={this.state.links}
               setupUpdate={this.setupUpdate}
-              deleteArticle={this.deleteArticle}
+              deleteLink={this.deleteLink}
             />
           )}
         />
@@ -139,9 +139,9 @@ class App extends React.Component {
           render={props => (
             <ArticleForm
               {...props}
-              updateArticle={this.updateArticle}
-              addArticle={this.addArticle}
-              currentArticle={this.state.currentArticle}
+              updateLink={this.updateLink}
+              addLink={this.addLink}
+              currentLink={this.state.currentLink}
             />
           )}
         />
