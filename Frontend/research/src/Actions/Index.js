@@ -94,7 +94,7 @@ export const ADD_LINK_FAILURE = "ADD_LINK_FAILURE";
 
 export const addLink = link => dispatch => {
     dispatch({ type: ADD_LINK })
-    return axios.post('https://rticle.herokuapp.com/api/user/articles', link)
+    return axios.post('https://rticle.herokuapp.com/api/user/articles', link, {headers: {Authorization: localStorage.getItem('token')}})
         .then(res => {
             console.log(res);
             dispatch({ type: ADD_LINK_SUCCESS, payload: res.data.data })

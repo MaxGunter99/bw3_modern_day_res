@@ -15,8 +15,8 @@ function ArticleList(props) {
                 >
                     <img
                         className="item-list-image"
-                        src={article.imageUrl}
-                        alt={article.name}
+                        src={article.url}
+                        alt={article.category}
                     />
                     <p>{article.name}</p>
                 </div>

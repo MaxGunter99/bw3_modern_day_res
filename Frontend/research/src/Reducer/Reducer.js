@@ -101,7 +101,8 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 link: action.payload,
-                addingLink: true
+                addingLink: true,
+                signedIn: true
             }
         case ADD_LINK_SUCCESS:
             return {

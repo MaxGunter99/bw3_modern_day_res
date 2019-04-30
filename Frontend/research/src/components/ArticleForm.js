@@ -1,23 +1,16 @@
-import React from "react";
+import React, {Component} from "react";
+import { connect } from 'react-redux';
+import { addLink } from '../Actions/Index'
 
-export default class ArticleForm extends React.Component {
+export class ArticleForm extends Component {
     state = {
-        url: "",
-        category: "",
-        user_id: "",
-        is_read: ""
-    };
-
-    componentDidMount() {
-        if (this.props.currentArticle) {
-            this.setState({
-                url: this.props.currentArticle.url,
-                category: this.props.currentArticle.category,
-            });
-
+        link: {
+            url: "",
+            category: "",
+            user_id: '',
+            is_read: false
         }
-
-    }
+    };
 
     handleChange = e => {
         this.setState({
@@ -25,56 +18,61 @@ export default class ArticleForm extends React.Component {
         });
     };
 
-    handleSubmit = e => {
-        e.preventDefault();
+    // handleChange = e => {
+    //     this.setState({
+    //         link: {...this.state.link, [e.target.name]: e.target.value}
+    //     });
+    // };
 
-        if (!this.props.currentArticle) {
-
-            this.props.addArticle({
-                ...this.state
-            });
-
-        }
-
-        else {
-
-            this.props.updateArticle({
-                ...this.state,
-                id: this.props.currentArticle.id
-            });
-
-        }
-
+    handleSubmit = () => {
+        this.props.addLink(this.state)
         this.setState({
-            url: "",
-            category: "",
+            url: this.state.url,
+            category: this.state.category,
+            username: this.state.username,
+            user_id: localStorage.getItem('user_id')
         });
-
-        this.props.history.push("/ArticleList");
+        // this.props.history.push("/ArticleList");
+        console.log(this.state)
     };
+
+    cataWorld = event => {
+        event.preventDefault();
+        this.setState({ category: 'world' })
+    }
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit} className='AddFormContainer'>
-                <input
-                    type="text"
-                    name="url"
-                    value={this.state.url}
-                    onChange={this.handleChange}
-                    placeholder="Url"
-                />
-                <input
-                    type="text"
-                    name="category"
-                    value={this.state.category}
-                    onChange={this.handleChange}
-                    placeholder="category"
-                />
-                <button>Add Article</button>
-            </form>
+            <div>
+                <form onSubmit={this.handleSubmit} className='AddFormContainer'>
+                    <input
+                        name="url"
+                        value={this.state.url || ''}
+                        onChange={this.handleChange}
+                        placeholder="Url"
+                        className='Input'
+                    />
+                    <input
+                        name='username'
+                        value={this.state.username || ''}
+                        placeholder='Add a User to share with'
+                        onChange={this.handleChange}
+                        className='Input'
+                    />
+                </form>
+
+                <button onClick={this.cataWorld}>World</button>
+                <button onClick={this.handleSubmit}>Add Article</button>
+
+            </div>
         );
     }
 }
+
+export default connect (
+    null,
+   { addLink }
+)(ArticleForm);
 
 
 // import React from "react";
