@@ -62,15 +62,13 @@ class App extends React.Component {
         <div>
           <NavLink to='/sign-in'>Login</NavLink>
           <NavLink to='/sign-up'>Signup</NavLink>
-          <NavLink to="/ArticleList">Articles</NavLink>
-          <NavLink to="/ArticleForm">Add Article</NavLink>
         </div>
       </nav>
     )
 
     return (
       <div className="App">
-        {this.props.token ? (
+        {localStorage.getItem('token') ? (
           <div className='navBar'>{loggedIn}</div>
         ) : (
             <div>{loggedOut}</div>

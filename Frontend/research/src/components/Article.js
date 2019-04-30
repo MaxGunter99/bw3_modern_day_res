@@ -3,8 +3,8 @@ import React from 'react';
 const Article = props => {
     return (
         <div className="item-wrapper">
-            <div className="item-header">
-                <div className="item-title-wrapper">
+            <div className="Article-wrapper">
+                <div className="article">
                     <h2>{props.link.category}</h2>
                     <h4>{props.link.url}</h4>
                 </div>

@@ -34,17 +34,46 @@ export class ArticleForm extends Component {
 
     cataWorld = event => {
         event.preventDefault();
-        this.setState({ category: 'world' })
+        this.setState({ category: 'World' })
     }
     cataTech = event => {
         event.preventDefault();
-        this.setState({ category: 'technology' })
+        this.setState({ category: 'Technology' })
+    }
+    cataNational = event => {
+        event.preventDefault();
+        this.setState({ category: 'National' })
+    }
+    cataLocal = event => {
+        event.preventDefault();
+        this.setState({ category: 'Local' })
+    }
+    cataSports = event => {
+        event.preventDefault();
+        this.setState({ category: 'Sports' })
+    }
+    cataArt = event => {
+        event.preventDefault();
+        this.setState({ category: 'Art' })
+    }
+    cataPolitics = event => {
+        event.preventDefault();
+        this.setState({ category: 'Politics' })
+    }
+    cataReligion = event => {
+        event.preventDefault();
+        this.setState({ category: 'Religion' })
+    }
+    cataScience = event => {
+        event.preventDefault();
+        this.setState({ category: 'Science' })
     }
 
     render() {
         return (
             <div>
                 <form onSubmit={this.handleSubmit} className='AddFormContainer'>
+                    <h3 className='formDetails'>URL to an Article</h3>
                     <input
                         name="url"
                         value={this.state.link.url || ''}
@@ -52,6 +81,7 @@ export class ArticleForm extends Component {
                         placeholder="Url"
                         className='Input'
                     />
+                    <h3 className='formDetails'>Your Username:</h3>
                     <input
                         name='username'
                         value={this.state.link.username || ''}
@@ -59,11 +89,21 @@ export class ArticleForm extends Component {
                         onChange={this.handleChange}
                         className='Input'
                     />
+                    <h3 className='formDetails'>Select a Category:</h3>
+                    <div className='form-buttons'>
+                        <button onClick={this.cataWorld}>World</button>
+                        <button onClick={this.cataTech}>Technology</button>
+                        <button onClick={this.cataNational}>National</button>
+                        <button onClick={this.cataLocal}>Local</button>
+                        <button onClick={this.cataSports}>Sports</button>
+                        <button onClick={this.cataArt}>Art</button>
+                        <button onClick={this.cataPolitics}>Politics</button>
+                        <button onClick={this.cataReligion}>Religion</button>
+                        <button onClick={this.cataScience}>Science</button>
+                    </div>
+                    <br />
+                    <button className='submit' onClick={this.handleSubmit}>Add Article</button>
                 </form>
-
-                <button onClick={this.cataWorld}>World</button>
-                <button onClick={this.cataTech}>Technology</button>
-                <button onClick={this.handleSubmit}>Add Article</button>
             </div>
         );
     }
