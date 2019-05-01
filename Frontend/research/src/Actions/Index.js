@@ -118,6 +118,7 @@ export const deleteLink = id => dispatch => {
         .then(res => {
             console.log(res);
             dispatch({ type: DELETE_LINK_SUCCESS, payload: res.data })
+            window.location.reload()
         })
         .catch(err => {
             console.log(err);
@@ -125,19 +126,19 @@ export const deleteLink = id => dispatch => {
         })
 }
 
-//UPDATE LINK
+//UPDATE LINK AS READ
 export const UPDATE_LINK = "UPDATE_LINK"
 export const UPDATE_LINK_PASS = "UPDATE_LINK_PASS"
 export const UPDATE_LINK_FAIL = "UPDATE_LINK_FAIL"
 
-export const updateLink = link => dispatch => {
+export const updateLink = (id, is_read) => dispatch => {
     dispatch({ type: UPDATE_LINK });
 
-    const url = 'https://rticle.herokuapp.com/api/user/articles'
     axios
-        .put(`${url}/ ${link.id}`, link)
+        .post( `https://rticle.herokuapp.com/api/user/${id}/read`, is_read, { headers: { Authorization: localStorage.getItem('token') } } )
         .then(response => {
             dispatch({ type: UPDATE_LINK_PASS, payload: response.data });
+            window.location.reload()
         })
         .catch(error => {
             dispatch({ type: UPDATE_LINK_FAIL, payload: error });

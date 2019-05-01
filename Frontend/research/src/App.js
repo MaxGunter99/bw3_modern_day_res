@@ -15,8 +15,7 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      links: [],
-      currentLink: null,
+      links: []
     };
   }
 
@@ -28,6 +27,12 @@ class App extends React.Component {
 
   deleteLink = (index) => {
     this.props.deleteLink(index)
+    this.gettingLinks();
+    this.props.history.push("/ArticleList");
+  };
+
+  updateLink = (index, is_read) => {
+    this.props.updateLink(index, is_read)
     this.gettingLinks();
   };
 
@@ -45,6 +50,7 @@ class App extends React.Component {
           <NavLink to="/ArticleList">Articles</NavLink>
           <NavLink to="/ArticleForm">Add Article</NavLink>
           <NavLink to='/sign-in' className='sign' onClick={this.logOut} >Log Out</NavLink>
+          {/* <Route  */}
         </div>
       </nav>
     )
@@ -75,6 +81,7 @@ class App extends React.Component {
             <ArticleList
               links={this.state.links}
               deleteLink={this.deleteLink}
+              updateLink={this.updateLink}
             />
           )}
         />

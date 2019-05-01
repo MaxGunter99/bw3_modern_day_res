@@ -5,6 +5,8 @@ import { addLink } from '../Actions/Index'
 export class ArticleForm extends Component {
     state = {
         link: {
+            title: '',
+            description: '',
             url: "",
             category: "",
             user_id: '',
@@ -18,12 +20,13 @@ export class ArticleForm extends Component {
         });
     };
 
-    handleSubmit = e => {
-        e.preventDefault();
+    handleSubmit = () => {
         const cat = this.state.category
-        this.props.addLink({ ...this.state.link, category: cat })
+        this.props.addLink({ ...this.state.link, category: cat})
         this.setState({
             link: {
+                title: '',
+                description: '',
                 url: '',
                 category: '',
                 username: '',
@@ -74,6 +77,25 @@ export class ArticleForm extends Component {
         return (
             <div>
                 <form onSubmit={this.handleSubmit} className='AddFormContainer'>
+
+                    <h3 className='formDetails'>Title</h3>
+                    <input
+                        name="title"
+                        value={this.state.link.title || ''}
+                        onChange={this.handleChange}
+                        placeholder="Title"
+                        className='Input'
+                    />
+
+                    <h3 className='formDetails'>Desctiption</h3>
+                    <input
+                        name="description"
+                        value={this.state.link.description || ''}
+                        onChange={this.handleChange}
+                        placeholder="Description"
+                        className='Input'
+                    />
+
                     <h3 className='formDetails'>URL to an Article</h3>
                     <input
                         name="url"
@@ -82,6 +104,7 @@ export class ArticleForm extends Component {
                         placeholder="Url"
                         className='Input'
                     />
+
                     <h3 className='formDetails'>Your Username:</h3>
                     <input
                         name='username'
@@ -90,6 +113,7 @@ export class ArticleForm extends Component {
                         onChange={this.handleChange}
                         className='Input'
                     />
+
                     <h3 className='formDetails'>Select a Category:</h3>
                     <div className='form-buttons'>
                         <button onClick={this.cataWorld}>World</button>
@@ -102,6 +126,7 @@ export class ArticleForm extends Component {
                         <button onClick={this.cataReligion}>Religion</button>
                         <button onClick={this.cataScience}>Science</button>
                     </div>
+
                     <br />
                     <button className='submit' onClick={this.handleSubmit}>Add Article</button>
                 </form>
