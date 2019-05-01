@@ -1,25 +1,36 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getLinks, deleteLink } from "../Actions/Index";
-import Article from "./Article";
+import { getLinks, deleteLink, updateLink } from "../Actions/Index";
+// import { Article } from "./Article";
 
 class ArticleList extends Component {
     state = {
-        link: this.props.link
+        link: [ ],
+        // edit: false
     };
-    
 
-    componentDidMount() {
-        this.props.getLinks(localStorage.getItem('user_id'));
-    }
+    // toggleEdit = () => {
+    //     this.setState( originalState => ({
+    //         edit: !originalState.edit
+    //     }))
+    // }
 
     render() {
+        // console.log(this.props.links)
         return (
             <>
                 <div className="container">
-                    <div className="main-container">
+                    <div className="ArticleContainer">
                         {this.props.links.map(link => (
-                            <Article link={link} key={link.id} deleteLink={this.deleteLink}/>
+                            <div className='ArticleWrapper' id={link.id} key={link.id}>
+                                <div className="article">
+                                    <h2>{link.category}</h2>
+                                    <h4>{link.url}</h4>
+                                    <p>{link.id}</p>
+                                    <button onClick={ () => this.props.deleteLink( link.id )}>Delete</button>
+                                </div>
+                            </div>
+                            // <Article link={link}/>
                         ))}
                     </div>
                 </div>
@@ -30,11 +41,12 @@ class ArticleList extends Component {
 
 const mapStateToProps = state => ({
     links: state.links,
+    // edit: state.editing
 });
 
 export default connect(
     mapStateToProps,
-    { getLinks, deleteLink }
+    { getLinks, deleteLink, updateLink }
 )(ArticleList);
 
 

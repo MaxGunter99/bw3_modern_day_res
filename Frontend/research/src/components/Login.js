@@ -24,9 +24,10 @@ class Login extends Component {
         });
     };
 
-    submitDataHandler = event => {
-        event.preventDefault();
-        this.props.login(this.state.userInfo).then(() => this.props.history.push("/ArticleList"))
+    submitDataHandler = e => {
+        e.preventDefault();
+        this.props.login(this.state.userInfo).then(() => this.props.history.push("/ArticleList"));
+        setTimeout(function(){window.location.reload();},200);
     };
 
     render() {

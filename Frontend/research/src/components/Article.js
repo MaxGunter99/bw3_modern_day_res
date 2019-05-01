@@ -1,68 +1,45 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { deleteLink } from '../Actions/Index'
+import { updateLink } from '../Actions/Index';
+import { connect } from 'react-redux'
+// import { ArticleForm } from './ArticleForm';
 
-const Article = props => {
+export class Article extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            edit: false,
+            links: {}
+        }
+    }
 
-    return (
-        <div className="item-wrapper">
-            <div className="Article-wrapper">
+    render() {
+        return (
+            <div className='container'>
                 <div className="article">
-                    <h2>{props.link.category}</h2>
-                    <h4>{props.link.url}</h4>
-                    <button onClick={props.deleteLink}>Delete Article</button>
+                    <h2>{this.props.links.category}</h2>
+                    <h4>{this.props.links.url}</h4>
+                    <p>{this.props.links.id}</p>
+
                 </div>
-            </div>
-        </div>
-    );
+                <button onClick={( event , id = links.id ) => this.props.links.deleteLink( event , id )} >Delete</button>
+                {/* {this.state.edit && <ArticleForm links={this.props.links} submit={this.props.updateLink} />}
+                <button
+                    className='edit'
+                    onClick={this.toggleEdit}
+                >Edit Article</button> */}
+            </div>  
+        )
+    }
 }
 
-// export default Article;
+const mapStateToProps = state => {
+    return {
+        edit: state.editing,
+        links: state.links
+    }
+}
 
 export default connect(
-    null,
-    { deleteLink }
-)(Article);
-
-
-// import React from 'react';
-// import { Route, NavLink } from 'react-router-dom';
-
-// import ArticleDescription from './ArticleDescription';
-
-// function Article(props) {
-//     const article = props.articles.find(
-//         thing => `${thing.id}` === props.match.params.id
-//     );
-
-//     if (!props.articles.length || !article) {
-//         return <h2>Loading article data...</h2>;
-//     }
-
-//     return (
-//         <div className="item-wrapper">
-//             <div className="item-header">
-//                 <div className="image-wrapper">
-//                     <img src={article.imageUrl} alt={article.name} />
-//                 </div>
-//                 <div className="item-title-wrapper">
-//                     <h2>{article.name}</h2>
-//                 </div>
-//             </div>
-//             <nav className="item-sub-nav">
-//                 <NavLink exact to={`/ArticleList/${article.id}`}>
-//                     URL
-//                 </NavLink>
-//             </nav>
-//             {/* <Route
-//                 exact
-//                 path="/ArticleList/:id"
-//                 render={props => <ArticleDescription {...props} article={article} />}
-//             /> */}
-//             <button onClick={() => props.deleteArticle(article.id)}>Delete</button>
-//             <button onClick={() => {props.setupUpdate(article)}}>Update</button>
-//         </div>
-//     );
-// }
-
-// export default Article;
+    mapStateToProps,
+    { updateLink }
+) (Article);

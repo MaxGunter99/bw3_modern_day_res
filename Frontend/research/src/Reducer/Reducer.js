@@ -11,7 +11,7 @@ const initialState = {
     fetchingLink: false,
     addingLink: false,
     deletingLink: false,
-    error: null,
+    error: null
 }
 
 const reducer = (state = initialState, action) => {
@@ -119,13 +119,14 @@ const reducer = (state = initialState, action) => {
         case DELETE_LINK:
             return {
                 ...state,
-                deletingLink: true
+                deletingLink: true,
+                links: state.links.filter( (link) => link.id !== action.payload.id )
             }
         case DELETE_LINK_SUCCESS:
             return {
                 ...state,
                 deletingLink: false,
-                links: ''
+                links: state.links.filter( (link) => link.id !== action.payload.id )
             }
         case DELETE_LINK_FAILURE:
             return {

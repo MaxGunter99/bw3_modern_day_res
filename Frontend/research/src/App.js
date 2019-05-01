@@ -1,7 +1,5 @@
-import axios from "axios";
 import React from 'react';
 import ArticleList from "./components/ArticleList";
-import Article from "./components/Article";
 import ArticleForm from "./components/ArticleForm";
 import {
   Route,
@@ -10,6 +8,8 @@ import {
 import './App.css'
 import Login from "./components/Login";
 import Signup from "./components/Signup";
+import { connect } from "react-redux";
+import {getLinks, deleteLink} from './Actions/Index';
 
 class App extends React.Component {
   constructor() {
@@ -20,21 +20,16 @@ class App extends React.Component {
     };
   }
 
-  componentDidMount() {
-    axios
-      .get('https://rticle.herokuapp.com/api/user/articles', { headers: { Authorization: localStorage.getItem('token')}})
-      .then(res => {
-        console.log(res);
-        this.setState({
-          links: res.data
-        });
-      })
-      .catch(function (err) {
-        console.log(err);
-      });
+  gettingLinks() {this.props.getLinks(localStorage.getItem('user_id'));}
 
-    console.log("after the get request");
+  componentDidMount() {
+    this.gettingLinks()
   }
+
+  deleteLink = (index) => {
+    this.props.deleteLink(index)
+    this.gettingLinks();
+  };
 
   logOut = () => {
     localStorage.removeItem("token");
@@ -76,19 +71,9 @@ class App extends React.Component {
         <Route path='/sign-up' component={Signup} />
 
         <Route exact path="/ArticleList"
-          render={props => (
+          render={() => (
             <ArticleList
-              {...props}
               links={this.state.links}
-            />
-          )}
-        />
-        <Route path="/ArticleList/:id"
-          render={props => (
-            <Article
-              {...props}
-              links={this.state.links}
-              setupUpdate={this.setupUpdate}
               deleteLink={this.deleteLink}
             />
           )}
@@ -108,30 +93,13 @@ class App extends React.Component {
   }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    links: state.links
+  }
+}
 
-  // deleteArticle = id => {
-  //   axios
-  //     .delete(`https://rticle.herokuapp.com/api/${id}`)
-  //     .then(res => {
-  //       this.setState({ articles: res.data });
-  //       this.props.history.push("/ArticleList");
-  //     })
-  //     .catch(err => console.log(err));
-  // };
-
-  // updateArticle = article => {
-  //   axios
-  //     .put(`https://rticle.herokuapp.com/api/${article.id}`, article)
-  //     .then(res => {
-  //       this.setState({ articles: res.data, currentArticle: null });
-  //       this.props.history.push("/ArticleList");
-  //     })
-  //     .catch(err => console.log(err));
-  // };
-
-  // setupUpdate = link => {
-  //   this.setState({ currentLink: link });
-
-  //   this.props.history.push("/ArticleForm");
-  // };
+export default connect( 
+  mapStateToProps, 
+  {getLinks, deleteLink}
+)(App);

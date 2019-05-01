@@ -18,7 +18,8 @@ export class ArticleForm extends Component {
         });
     };
 
-    handleSubmit = () => {
+    handleSubmit = e => {
+        e.preventDefault();
         const cat = this.state.category
         this.props.addLink({ ...this.state.link, category: cat })
         this.setState({
