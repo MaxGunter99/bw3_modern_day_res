@@ -22,9 +22,7 @@ class App extends React.Component {
 
   componentDidMount() {
     axios
-      .get('https://rticle.herokuapp.com/api/user/articles', {
-        headers: { Authorization: localStorage.getItem('token') }
-      })
+      .get('https://rticle.herokuapp.com/api/user/articles', { headers: { Authorization: localStorage.getItem('token')}})
       .then(res => {
         console.log(res);
         this.setState({
@@ -77,7 +75,7 @@ class App extends React.Component {
         <Route path='/sign-in' component={Login} />
         <Route path='/sign-up' component={Signup} />
 
-        <Route exact path="/ArticleList" 
+        <Route exact path="/ArticleList"
           render={props => (
             <ArticleList
               {...props}

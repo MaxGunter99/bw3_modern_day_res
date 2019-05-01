@@ -110,9 +110,9 @@ export const DELETE_LINK = "DELETE_LINK";
 export const DELETE_LINK_SUCCESS = "DELETE_LINK_SUCCESS";
 export const DELETE_LINK_FAILURE = "DELETE_LINK_FAILURE";
 
-export const deleteLink = () => dispatch => {
+export const deleteLink = id => dispatch => {
     dispatch({ type: DELETE_LINK })
-    axios.delete('')
+    axios.delete(`https://rticle.herokuapp.com/api/user/${id}/articles`, id, {headers: {Authorization: localStorage.getItem('token')}})
         .then(res => {
             console.log(res);
             dispatch({ type: DELETE_LINK_SUCCESS, payload: res.data })

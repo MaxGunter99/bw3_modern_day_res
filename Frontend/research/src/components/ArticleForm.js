@@ -8,7 +8,7 @@ export class ArticleForm extends Component {
             url: "",
             category: "",
             user_id: '',
-            is_read: false
+            is_read: false,
         }
     };
 
@@ -26,7 +26,7 @@ export class ArticleForm extends Component {
                 url: '',
                 category: '',
                 username: '',
-                user_id: localStorage.getItem('user_id')
+                user_id: localStorage.getItem('user_id'),
             }
         });
         this.props.history.push("/ArticleList");
@@ -85,7 +85,7 @@ export class ArticleForm extends Component {
                     <input
                         name='username'
                         value={this.state.link.username || ''}
-                        placeholder='Add a User to share with'
+                        placeholder='Username'
                         onChange={this.handleChange}
                         className='Input'
                     />

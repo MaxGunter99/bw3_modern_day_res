@@ -1,19 +1,28 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { deleteLink } from '../Actions/Index'
 
 const Article = props => {
+
     return (
         <div className="item-wrapper">
             <div className="Article-wrapper">
                 <div className="article">
                     <h2>{props.link.category}</h2>
                     <h4>{props.link.url}</h4>
+                    <button onClick={props.deleteLink}>Delete Article</button>
                 </div>
             </div>
         </div>
     );
 }
 
-export default Article;
+// export default Article;
+
+export default connect(
+    null,
+    { deleteLink }
+)(Article);
 
 
 // import React from 'react';

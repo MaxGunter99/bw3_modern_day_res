@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getLinks } from "../Actions/Index";
+import { getLinks, deleteLink } from "../Actions/Index";
 import Article from "./Article";
 
 class ArticleList extends Component {
     state = {
-        links: this.props.links
+        link: this.props.link
     };
+    
 
     componentDidMount() {
         this.props.getLinks(localStorage.getItem('user_id'));
@@ -18,7 +19,7 @@ class ArticleList extends Component {
                 <div className="container">
                     <div className="main-container">
                         {this.props.links.map(link => (
-                            <Article link={link} key={link.id}/>
+                            <Article link={link} key={link.id} deleteLink={this.deleteLink}/>
                         ))}
                     </div>
                 </div>
@@ -33,7 +34,7 @@ const mapStateToProps = state => ({
 
 export default connect(
     mapStateToProps,
-    { getLinks }
+    { getLinks, deleteLink }
 )(ArticleList);
 
 
