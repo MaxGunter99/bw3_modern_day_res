@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  overflow: hidden;
 }
 
 #root{
@@ -17,8 +18,53 @@ nav.header {
   font-size: calc(10px + 2vmin);
   color: white;
   top: 0;
-  height: 121px;
+  height: 120px;
+  width: 90%;
+  margin: 0 auto;
+  border-radius: 0 0 10px 10px;
+  /* position: fixed; */
+}
+
+nav.LoggedOutHeader {
+  background-color: orange;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  top: 0;
+  height: 130px;
+  width: 90%;
+  margin: 0 auto;
+  border-radius: 0 0 10px 10px;
+}
+
+.LoggedOutHeader div{
+  height: 38px;
+  width: 30%;
+  display: inline-flex;
+  justify-content: space-around;
+}
+
+.LoggedOutButton{
+  padding-bottom: 10px;
+}
+
+.footer {
+  background-color: orange;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: white;
+  height: 40px;
   width: 100%;
+  margin: 0 auto;
+  border-radius: 10px 10px 0 0;
+  margin-top: 20px;
+  bottom: 0;
+  position: fixed;
+  right: center;
 }
 
 nav h1{
@@ -118,6 +164,7 @@ nav.header div{
   display: inline-flex;
   width: 100%;
   justify-content: space-around;
+  flex-wrap: wrap;
 }
 
 nav a{
@@ -130,6 +177,7 @@ nav a{
 
 .header{
   padding:12px;
+  height: auto;
 }
 
 
@@ -172,6 +220,7 @@ nav div h1{
 
 .container{
   margin-top: 20px;
+  margin-bottom: 50px;
 }
 
 .AddFormContainer{

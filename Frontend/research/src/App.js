@@ -20,6 +20,7 @@ import Politics from './components/Categories/Politics';
 import Religion from './components/Categories/Religion';
 import Technology from './components/Categories/Technology';
 import World from './components/Categories/World';
+import Footer from './components/Footer';
 
 class App extends React.Component {
   constructor() {
@@ -70,17 +71,17 @@ class App extends React.Component {
           <NavLink to='/Article-Science'>Science</NavLink>
           <NavLink to='/CompletedArticles'>Completed</NavLink>
           <NavLink to="/ArticleForm" className='addIt'>Add Article</NavLink>
-          <NavLink to='/sign-in' className='signOut' onClick={this.logOut} >Log Out</NavLink>
+          <NavLink to='/' className='signOut' onClick={this.logOut} >Log Out</NavLink>
         </div>
       </nav>
     )
 
     let loggedOut = (
-      <nav className='header'>
+      <nav className='LoggedOutHeader'>
         <h1>Modern Day Researcher</h1>
         <div>
-          <NavLink to='/sign-in'>Login</NavLink>
-          <NavLink to='/sign-up'>Signup</NavLink>
+          <NavLink className='LoggedOutButton' to='/'>Login</NavLink>
+          <NavLink className='LoggedOutButton' to='/sign-up'>Signup</NavLink>
         </div>
       </nav>
     )
@@ -205,6 +206,11 @@ class App extends React.Component {
             />
           )}
         />
+        <div className='bottomFooter'>
+          {localStorage.getItem('token') ? (
+            <Footer/>
+          ) : (<p></p>)}
+        </div>
       </div>
     );
   }

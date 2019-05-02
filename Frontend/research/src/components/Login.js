@@ -26,8 +26,8 @@ class Login extends Component {
 
     submitDataHandler = e => {
         e.preventDefault();
-        this.props.login(this.state.userInfo).then(() => this.props.history.push("/CompletedArticles"));
-        setTimeout(function(){window.location.reload(e.preventDefault())} , 200);
+        this.props.login(this.state.userInfo).then(() => this.props.history.push("/ArticleList"));
+        setTimeout(function(){window.location.reload(e.preventDefault())} , 250);
     };
 
     render() {
