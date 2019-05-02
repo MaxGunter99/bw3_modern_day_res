@@ -71,7 +71,7 @@ class App extends React.Component {
           <NavLink to='/Article-Science'>Science</NavLink>
           <NavLink to='/CompletedArticles'>Completed</NavLink>
           <NavLink to="/ArticleForm" className='addIt'>Add Article</NavLink>
-          <NavLink to='/' className='signOut' onClick={this.logOut} >Log Out</NavLink>
+          <NavLink to='/sign-in' className='signOut' onClick={this.logOut} >Log Out</NavLink>
         </div>
       </nav>
     )
@@ -80,7 +80,7 @@ class App extends React.Component {
       <nav className='LoggedOutHeader'>
         <h1>Modern Day Researcher</h1>
         <div>
-          <NavLink className='LoggedOutButton' to='/'>Login</NavLink>
+          <NavLink className='LoggedOutButton' to='/sign-in'>Login</NavLink>
           <NavLink className='LoggedOutButton' to='/sign-up'>Signup</NavLink>
         </div>
       </nav>
