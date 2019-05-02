@@ -6,33 +6,39 @@ class ArticleList extends Component {
     state = {
         link: [],
         edit: false
-    };
+    }
 
     render() {
         return (
             <>
                 <div className="container">
                     <div className="ArticleContainer">
-                        {this.props.links.map(link => (
+                        {this.props.links.map(link => { 
+                            // if (link.is_read === 1){console.log(link.id, 'is read')} else {console.log(link.id, 'is not read yet')}
+                            function statusOfRead(){if (link.is_read === 1){return('Complete')} else {return('Not read yet')}}
+                            return(
                             <div className='ArticleWrapper' id={link.id} key={link.id}>
-                                <div className="article">
-                                    <h1>{link.title}</h1>
-                                    <h2>{link.description}</h2>
-                                    <h2>{link.category}</h2>
-                                    <h4>{link.url}</h4>
-                                    <p>{link.is_read}</p>
-                                    <button><a href={link.url}>Go to Article</a></button>
-                                    <button onClick={() => this.props.deleteLink(link.id)}>Delete</button>
-                                    <button onClick={() => this.props.updateLink(link.id, link.is_read)}>Update</button>
+                                <div className="article" id='read'>
+                                    <h1>Title: {link.title}</h1>
+                                    <h2> Description: <p>{link.description}</p></h2>
+                                    <h2>Category: {link.category}</h2>
+                                    <p><strong>Status:</strong> {statusOfRead()}</p>
+                                    <div className='buttons'>
+                                        <button><a href={link.url}>Go to Article</a></button>
+                                        <button onClick={() => this.props.deleteLink(link.id)}>Delete</button>
+                                        <button onClick={() => this.props.updateLink(link.id, link.is_read)}>Mark as Read</button>
+                                    </div>
                                 </div>
                             </div>
-                        ))}
+                        )})}
                     </div>
                 </div>
             </>
         );
     }
 }
+
+
 
 const mapStateToProps = state => ({
     links: state.links,

@@ -130,6 +130,7 @@ const reducer = (state = initialState, action) => {
                 signedIn: true
             }
         case ADD_LINK_SUCCESS:
+            console.log(action.payload, 'payload')
             return {
                 ...state,
                 addingLink: false,

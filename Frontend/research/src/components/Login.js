@@ -26,18 +26,16 @@ class Login extends Component {
 
     submitDataHandler = e => {
         e.preventDefault();
-        this.props.login(this.state.userInfo).then(() => this.props.history.push("/ArticleList"));
+        this.props.login(this.state.userInfo).then(() => this.props.history.push("/ArticleForm"));
         setTimeout(function(){window.location.reload();},200);
     };
 
     render() {
         return (
             <div className="form-wrap">
-                <form className='login' onSubmit={this.submitDataHandler}>
-                    <div className="sign-header">
-                        <h3 className='cat-head'>Sign In</h3>
-                    </div>
-                    <label>Username</label>
+                <form className='LogAndSign' onSubmit={this.submitDataHandler}>
+                    <h3 className='cat-head'>Log In</h3>
+                    <label>Username:</label>
                     <input
                         id="username"
                         type="text"
@@ -47,7 +45,7 @@ class Login extends Component {
                         placeholder="Username"
                         onChange={this.changeHandler}
                     />
-                    <label htmlFor="password">Password</label>
+                    <label htmlFor="password">Password:</label>
                     <input
                         id="password"
                         type="password"
@@ -57,7 +55,7 @@ class Login extends Component {
                         placeholder="Password"
                         onChange={this.changeHandler}
                     />
-                    <button type='submit' className='actButton' >Log In!</button>
+                    <button type='submit' className='actButton' >Submit</button>
                 </form>
                 <div />
             </div>

@@ -2,18 +2,29 @@
   text-align: center;
 }
 
+#root{
+  background-image: url('https://images.pexels.com/photos/227396/pexels-photo-227396.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+  min-height: 800px;
+  background-attachment: fixed;
+}
+
 nav.header {
-  background-color: #282c34;
+  background-color: orange;
   display: flex;
   align-items: center;
   justify-content: space-between;
   font-size: calc(10px + 2vmin);
   color: white;
-  height: 65px;
+  height: 80px;
+  position: fixed;
+  top: 0;
+  width: 100%;
 }
 
 nav h1{
   margin-left: 10px;
+  text-decoration: underline;
+  font-family: "Impact";
 }
 
 .ArticleWrapper{
@@ -21,9 +32,68 @@ nav h1{
   width: 80%;
   word-wrap: break-word;
   border: 1px solid grey;
+  background-color: white;
   margin-top: 10px;
+  border-radius: 5px;
   padding: 10px;
 }
+
+.article .buttons{
+  display: inline-flex;
+  width: 80%;
+  justify-content: space-around;
+}
+
+.article .buttons button{
+  height: 40px;
+  border-radius: 5px;
+  border: 1px solid black;
+  font-size: 20px;
+}
+
+.article .buttons button:hover{
+  color: white;
+  background-color: black;
+}
+
+.article .buttons button a{
+  color: black;
+  text-decoration: none;
+  height: 100%;
+}
+
+.article .buttons button a:hover{
+  color: white;
+  background-color: black;
+}
+
+.ArticleWrapperComplete{
+  margin: 0 auto;
+  width: 80%;
+  word-wrap: break-word;
+  border: 1px solid white;
+  background-color: rgba(236, 73, 73, 0.644);
+  margin-top: 10px;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.notCompleted{
+  background-color: rgba(236, 73, 73, 0.644);
+  color: white;
+  font-size: 20px;
+  padding: 10px;
+}
+
+.signOut:hover{
+  background-color: red;
+}
+
+.addIt:hover{
+  background-color: green;
+}
+
+
 
 .select{
   display: inline-flex;
@@ -43,8 +113,9 @@ header nav{
 nav a{
   color: white;
   font-size: 30px;
-  padding: 20px;
-  border-radius: 10px 10px 0 0 ;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 5px;
   font-size: .8em;
   text-decoration: none;
 }
@@ -53,6 +124,8 @@ nav a{
 nav a:hover{
   background-color: white;
   color: black;
+  border-bottom: 2px solid black;
+  transition: .5s;
 }
 
 nav div h1{
@@ -86,22 +159,32 @@ nav div h1{
   border-radius: 10px;
 }
 
+.container{
+  margin-top: 80px;
+}
+
 .AddFormContainer{
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  width: 40%;
+  width: 45%;
   background-color: #282c34;
   color: white;
   padding: 10px;
-  border-radius: 20px;
+  border-radius: 0 0 20px 20px;
   margin: 0 auto;
-  margin-top: 50px;
 }
 
 .AddFormContainer input{
   height: 30px;
   margin: 10px;
+}
+
+.FormContainer{
+  background-image: url('https://images.pexels.com/photos/62693/pexels-photo-62693.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+  background-size: 100%;
+  background-attachment: fixed;
+  margin-top: 80px;
 }
 
 .form-buttons{
@@ -113,12 +196,12 @@ nav div h1{
 }
 
 .form-buttons button{
-  width: 120px;
+  width: 70%;
   border-radius: 5px;
   color: white;
-  background-color: black;
+  background-color: rgba(77, 77, 77, 0.788);
   font-size: 18px;
-  margin: 10px;
+  margin: 5px;
 }
 
 .form-buttons button:hover{
@@ -142,4 +225,68 @@ form button.submit:hover{
 
 .formDetails{
   margin-bottom: 5px;
+}
+
+.form-wrap{
+  margin-top: 80px;
+  padding-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+h3.cat-head{
+  background-color: white;
+  color: black;
+  font-size: 1.5em;
+  width: 40%; 
+  padding: 10px;
+  margin: 0 auto;
+  border-radius: 5px;
+}
+
+.LogAndSign{
+  margin-top: 80px;
+  padding-top: 20px;
+  background-color: #282c34;
+  width: 60%;
+  border-radius: 5px;
+  padding: 10px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.LogAndSign input{
+  width: 60%;
+  height: 20px;
+  margin: 0 auto;
+}
+
+.LogAndSign label{
+  margin: 15px;
+}
+
+.LogAndSign button{
+  width: 40%;
+  border-radius: 5px;
+  height: 30px;
+  font-size: 15px;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  color: white;
+  background-color: black;
+  border: 1px solid white;
+}
+
+.LogAndSign button:hover{
+  color: white;
+  background-color: orange;
+  border: 1px solid white;
+}
+
+.actButton{
+  margin: 0 auto;
+}
+
+.isRead{
+  background-color: red;
 }

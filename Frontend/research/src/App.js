@@ -9,7 +9,8 @@ import './App.css'
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import { connect } from "react-redux";
-import {getLinks, deleteLink} from './Actions/Index';
+import { getLinks, deleteLink } from './Actions/Index';
+import CompletedArticles from './components/CompletedArticles';
 
 class App extends React.Component {
   constructor() {
@@ -19,7 +20,7 @@ class App extends React.Component {
     };
   }
 
-  gettingLinks() {this.props.getLinks(localStorage.getItem('user_id'));}
+  gettingLinks() { this.props.getLinks(localStorage.getItem('user_id')); }
 
   componentDidMount() {
     this.gettingLinks()
@@ -31,7 +32,8 @@ class App extends React.Component {
     this.props.history.push("/ArticleList");
   };
 
-  updateLink = (index, is_read) => {
+  updateLink = (e, index, is_read) => {
+    e.preventDefault();
     this.props.updateLink(index, is_read)
     this.gettingLinks();
   };
@@ -47,9 +49,10 @@ class App extends React.Component {
       <nav className='header'>
         <h1>Modern Day Researcher</h1>
         <div>
+          <NavLink to='/CompletedArticles'>Completed</NavLink>
           <NavLink to="/ArticleList">Articles</NavLink>
-          <NavLink to="/ArticleForm">Add Article</NavLink>
-          <NavLink to='/sign-in' className='sign' onClick={this.logOut} >Log Out</NavLink>
+          <NavLink to="/ArticleForm" className='addIt'>Add Article</NavLink>
+          <NavLink to='/sign-in' className='signOut' onClick={this.logOut} >Log Out</NavLink>
           {/* <Route  */}
         </div>
       </nav>
@@ -85,6 +88,14 @@ class App extends React.Component {
             />
           )}
         />
+        <Route exact path="/CompletedArticles"
+          render={() => (
+            <CompletedArticles
+              links={this.state.links}
+              deleteLink={this.deleteLink}
+            />
+          )}
+        />
         <Route path="/ArticleForm"
           render={props => (
             <ArticleForm
@@ -106,7 +117,7 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect( 
-  mapStateToProps, 
-  {getLinks, deleteLink}
+export default connect(
+  mapStateToProps,
+  { getLinks, deleteLink }
 )(App);

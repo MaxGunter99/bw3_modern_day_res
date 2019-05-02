@@ -79,6 +79,7 @@ export const getCategory = () => dispatch => {
         .then(res => {
             console.log(res);
             dispatch({ type: GET_LINK_SUCCESS, payload: res.data.data })
+            setTimeout(function(){window.location.reload();},300);
         })
         .catch(err => {
             console.log(err)
@@ -93,11 +94,12 @@ export const ADD_LINK_SUCCESS = "ADD_LINK_SUCCESS";
 export const ADD_LINK_FAILURE = "ADD_LINK_FAILURE";
 
 export const addLink = link => dispatch => {
+    console.log(link)
     dispatch({ type: ADD_LINK })
     return axios.post('https://rticle.herokuapp.com/api/user/articles', link, { headers: { Authorization: localStorage.getItem('token') } })
         .then(res => {
             console.log(res);
-            dispatch({ type: ADD_LINK_SUCCESS, payload: res.data })
+            dispatch({ type: ADD_LINK_SUCCESS, payload: {...res.data, title: link.title, description: link.description} })
         })
         .catch(err => {
             console.log(err);
