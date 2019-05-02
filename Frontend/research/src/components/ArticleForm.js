@@ -32,6 +32,7 @@ export class ArticleForm extends Component {
                 category: '',
                 username: '',
                 user_id: localStorage.getItem('user_id'),
+                is_read: false
             }
         });
         this.props.history.push("/ArticleList");
@@ -78,33 +79,7 @@ export class ArticleForm extends Component {
         return (
             <div className='FormContainer'>
                 <form onSubmit={this.handleSubmit} className='AddFormContainer'>
-
-                    <h3 className='formDetails'>Title:</h3>
-                    <input
-                        name="title"
-                        value={this.state.link.title}
-                        onChange={this.handleChange}
-                        placeholder="Title"
-                        className='Input'
-                    />
-
-                    <h3 className='formDetails'>Desctiption:</h3>
-                    <input
-                        name="description"
-                        value={this.state.link.description}
-                        onChange={this.handleChange}
-                        placeholder="Description"
-                        className='Input'
-                    />
-
-                    <h3 className='formDetails'>URL of Article:</h3>
-                    <input
-                        name="url"
-                        value={this.state.link.url || ''}
-                        onChange={this.handleChange}
-                        placeholder="Url"
-                        className='Input'
-                    />
+                    <h1>Add an Article</h1>
 
                     <h3 className='formDetails'>Your Username:</h3>
                     <input
@@ -112,6 +87,15 @@ export class ArticleForm extends Component {
                         value={this.state.link.username || ''}
                         placeholder='Username'
                         onChange={this.handleChange}
+                        className='Input'
+                    />
+                    
+                    <h3 className='formDetails'>URL of Article:</h3>
+                    <input
+                        name="url"
+                        value={this.state.link.url || ''}
+                        onChange={this.handleChange}
+                        placeholder="Url"
                         className='Input'
                     />
 

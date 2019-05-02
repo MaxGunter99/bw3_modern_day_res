@@ -11,6 +11,15 @@ import Signup from "./components/Signup";
 import { connect } from "react-redux";
 import { getLinks, deleteLink } from './Actions/Index';
 import CompletedArticles from './components/CompletedArticles';
+import Science from './components/Categories/Science';
+import Sports from './components/Categories/Sports';
+import Art from './components/Categories/Art';
+import Local from './components/Categories/Local';
+import National from './components/Categories/National';
+import Politics from './components/Categories/Politics';
+import Religion from './components/Categories/Religion';
+import Technology from './components/Categories/Technology';
+import World from './components/Categories/World';
 
 class App extends React.Component {
   constructor() {
@@ -49,11 +58,19 @@ class App extends React.Component {
       <nav className='header'>
         <h1>Modern Day Researcher</h1>
         <div>
+          <NavLink to="/ArticleList">All</NavLink>
+          <NavLink to='/Article-Art'>Art</NavLink>
+          <NavLink to='/Article-National'>National</NavLink>
+          <NavLink to='/Article-Local'>Local</NavLink>
+          <NavLink to='/Article-Politics'>Politics</NavLink>
+          <NavLink to='/Article-Religion'>Religion</NavLink>
+          <NavLink to='/Article-Sports'>Sports</NavLink>
+          <NavLink to='/Article-Technology'>Technology</NavLink>
+          <NavLink to='/Article-World'>World</NavLink>
+          <NavLink to='/Article-Science'>Science</NavLink>
           <NavLink to='/CompletedArticles'>Completed</NavLink>
-          <NavLink to="/ArticleList">Articles</NavLink>
           <NavLink to="/ArticleForm" className='addIt'>Add Article</NavLink>
           <NavLink to='/sign-in' className='signOut' onClick={this.logOut} >Log Out</NavLink>
-          {/* <Route  */}
         </div>
       </nav>
     )
@@ -88,11 +105,93 @@ class App extends React.Component {
             />
           )}
         />
+        <Route exact path="/Article-Science"
+          render={() => (
+            <Science
+              links={this.state.links}
+              deleteLink={this.deleteLink}
+              updateLink={this.updateLink}
+            />
+          )}
+        />
+        <Route exact path="/Article-Art"
+          render={() => (
+            <Art
+              links={this.state.links}
+              deleteLink={this.deleteLink}
+              updateLink={this.updateLink}
+            />
+          )}
+        />
+        <Route exact path="/Article-Local"
+          render={() => (
+            <Local
+              links={this.state.links}
+              deleteLink={this.deleteLink}
+              updateLink={this.updateLink}
+            />
+          )}
+        />
+        <Route exact path="/Article-National"
+          render={() => (
+            <National
+              links={this.state.links}
+              deleteLink={this.deleteLink}
+              updateLink={this.updateLink}
+            />
+          )}
+        />
+        <Route exact path="/Article-Politics"
+          render={() => (
+            <Politics
+              links={this.state.links}
+              deleteLink={this.deleteLink}
+              updateLink={this.updateLink}
+            />
+          )}
+        />
+        <Route exact path="/Article-Religion"
+          render={() => (
+            <Religion
+              links={this.state.links}
+              deleteLink={this.deleteLink}
+              updateLink={this.updateLink}
+            />
+          )}
+        />
+        <Route exact path="/Article-Sports"
+          render={() => (
+            <Sports
+              links={this.state.links}
+              deleteLink={this.deleteLink}
+              updateLink={this.updateLink}
+            />
+          )}
+        />
+        <Route exact path="/Article-Technology"
+          render={() => (
+            <Technology
+              links={this.state.links}
+              deleteLink={this.deleteLink}
+              updateLink={this.updateLink}
+            />
+          )}
+        />
+        <Route exact path="/Article-World"
+          render={() => (
+            <World
+              links={this.state.links}
+              deleteLink={this.deleteLink}
+              updateLink={this.updateLink}
+            />
+          )}
+        />
         <Route exact path="/CompletedArticles"
           render={() => (
             <CompletedArticles
               links={this.state.links}
               deleteLink={this.deleteLink}
+              key={this.state.links.id}
             />
           )}
         />

@@ -11,18 +11,18 @@
 nav.header {
   background-color: orange;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: space-between;
   font-size: calc(10px + 2vmin);
   color: white;
-  height: 80px;
-  position: fixed;
   top: 0;
+  height: 121px;
   width: 100%;
 }
 
 nav h1{
-  margin-left: 10px;
+  margin-top: 10px;
   text-decoration: underline;
   font-family: "Impact";
 }
@@ -93,7 +93,11 @@ nav h1{
   background-color: green;
 }
 
-
+.active{
+  color: white;
+  background-color: rgba(255, 136, 0, 0.76);
+  border-radius: 5px 5px 0 0;
+}
 
 .select{
   display: inline-flex;
@@ -110,21 +114,28 @@ header nav{
   margin-bottom: 10px;
 }
 
+nav.header div{
+  display: inline-flex;
+  width: 100%;
+  justify-content: space-around;
+}
+
 nav a{
   color: white;
-  font-size: 30px;
-  margin: 10px;
   padding: 10px;
-  border-radius: 5px;
+  border-radius: 5px 5px 0 0;
   font-size: .8em;
   text-decoration: none;
+}
+
+.header{
+  padding:12px;
 }
 
 
 nav a:hover{
   background-color: white;
   color: black;
-  border-bottom: 2px solid black;
   transition: .5s;
 }
 
@@ -160,7 +171,7 @@ nav div h1{
 }
 
 .container{
-  margin-top: 80px;
+  margin-top: 20px;
 }
 
 .AddFormContainer{
@@ -184,7 +195,6 @@ nav div h1{
   background-image: url('https://images.pexels.com/photos/62693/pexels-photo-62693.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
   background-size: 100%;
   background-attachment: fixed;
-  margin-top: 80px;
 }
 
 .form-buttons{
@@ -218,6 +228,7 @@ form button.submit{
   background-color: white;
   font-size: 15px;
 }
+
 form button.submit:hover{
   color: white;
   background-color: black;
@@ -233,6 +244,7 @@ form button.submit:hover{
   display: flex;
   justify-content: center;
 }
+
 h3.cat-head{
   background-color: white;
   color: black;
