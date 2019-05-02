@@ -60,6 +60,7 @@ class App extends React.Component {
       <nav className='header'>
         <h1>Modern Day Researcher</h1>
         <div>
+          <a href='https://weparkerjr.github.io/ModDayRes/'>Home</a>
           <NavLink to="/ArticleList">All</NavLink>
           <NavLink to='/Article-Art'>Art</NavLink>
           <NavLink to='/Article-National'>National</NavLink>

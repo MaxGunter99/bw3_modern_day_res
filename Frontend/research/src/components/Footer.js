@@ -4,7 +4,7 @@ const Footer = () => {
     return (
         <>
             <div className='footer' >
-                <p>footer info here!</p>
+                <p>About us located at Home page</p>
             </div>
         </>
     );
