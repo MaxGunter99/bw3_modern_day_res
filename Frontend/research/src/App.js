@@ -21,7 +21,7 @@ import Religion from './components/Categories/Religion';
 import Technology from './components/Categories/Technology';
 import World from './components/Categories/World';
 import Footer from './components/Footer';
-import Home from './components/Home';
+// import Home from './components/Home';
 
 class App extends React.Component {
   constructor() {

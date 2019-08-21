@@ -28,7 +28,7 @@ class Login extends Component {
     submitDataHandler = e => {
         e.preventDefault();
         this.props.login(this.state.userInfo)
-        if ( localStorage.getItem( 'token' ) == undefined ) {
+        if ( localStorage.getItem( 'token' ) === undefined ) {
             console.log( 'nope' )
         }
         else {
