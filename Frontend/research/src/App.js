@@ -31,27 +31,31 @@ class App extends React.Component {
     };
   }
 
-  gettingLinks() { this.props.getLinks(localStorage.getItem('user_id')); }
+  gettingLinks() { this.props.getLinks(localStorage.getItem('user_id'));}
 
   componentDidMount() {
     this.gettingLinks()
+    // this.props.history.push("/ArticleList");
   }
 
   deleteLink = (index) => {
     this.props.deleteLink(index)
-    this.gettingLinks();
     this.props.history.push("/ArticleList");
+    this.gettingLinks();
   };
 
   updateLink = (e, index, is_read) => {
     e.preventDefault();
     this.props.updateLink(index, is_read)
-    this.gettingLinks();
+    // this.gettingLinks();
+    this.props.history.push("/ArticleList");
   };
 
   logOut = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("user_id");
     this.props.checkSignIn();
+    // e.preventDefault();
     this.props.history.push("/sign-in");
   };
 
@@ -80,7 +84,7 @@ class App extends React.Component {
 
     let loggedOut = (
       <nav className='LoggedOutHeader'>
-        <h1>Modern Day Researcher</h1>
+        <h1 className='loggedouttitle'>Modern Day Researcher</h1>
         <div>
           <NavLink className='LoggedOutButton' to='/sign-in'>Login</NavLink>
           <NavLink className='LoggedOutButton' to='/sign-up'>Signup</NavLink>
@@ -94,12 +98,9 @@ class App extends React.Component {
           <div className='navBar'>{loggedIn}</div>
         ) : (
             <div>{loggedOut}</div>
-          )}
-        <Route exact path='/' render={() => (<Home/>)}/>
-
-        <Route path='/sign-in' component={Login} />
-        <Route path='/sign-up' component={Signup} />
-
+        )}
+        <Route path='/sign-in' component= {Login} />
+        <Route path='/sign-up' component= {Signup} />
         <Route exact path="/ArticleList"
           render={() => (
             <ArticleList

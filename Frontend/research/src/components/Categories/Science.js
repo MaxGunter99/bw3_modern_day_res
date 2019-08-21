@@ -15,12 +15,12 @@ class Science extends Component {
                     <div className="ArticleContainer">
                         <div className='readNotification'></div>
                         {this.props.links.map(link => { 
-                             function statusOfRead(){if (link.is_read === 1){return('Complete')} else {return('Not read yet')}}
+                            function statusOfRead(){if (link.is_read === 1){return('Complete')} else {return('Not read yet')}}
                             if (link.category === 'Science'){
                                 return(
                                     <div className='ArticleWrapper' id={link.id} key={link.id}>
                                         <div className="article" id='read'>
-                                            <h1>{link.id}</h1>
+                                            <h1>#{link.id}</h1>
                                             <h2>Category: {link.category}</h2>
                                             <p><strong>Status:</strong> {statusOfRead()}</p>
                                             <div className='buttons'>

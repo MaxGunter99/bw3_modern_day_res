@@ -20,12 +20,13 @@ class Art extends Component {
                                 return(
                                     <div className='ArticleWrapper' id={link.id} key={link.id}>
                                         <div className="article" id='read'>
-                                            <h1>{link.id}</h1>
+                                            <h1>#{link.id}</h1>
                                             <h2>Category: {link.category}</h2>
                                             <p><strong>Status:</strong> {statusOfRead()}</p>
                                             <div className='buttons'>
                                                 <button><a href={link.url}>Go to Article</a></button>
                                                 <button className='delete' onClick={() => this.props.deleteLink(link.id)}>Delete</button>
+                                                <button onClick={() => this.props.updateLink(link.id, link.is_read)}>Mark as Read</button>
                                             </div>
                                         </div>
                                 </div>

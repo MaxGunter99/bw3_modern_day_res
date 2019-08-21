@@ -22,12 +22,18 @@ class Login extends Component {
                 [event.target.name]: event.target.value
             }
         });
+        // this.props.history.push("/ArticleList");
     };
 
     submitDataHandler = e => {
         e.preventDefault();
-        this.props.login(this.state.userInfo).then(() => this.props.history.push("/ArticleList"));
-        setTimeout(function(){window.location.reload(e.preventDefault())} , 250);
+        this.props.login(this.state.userInfo)
+        if ( localStorage.getItem( 'token' ) == undefined ) {
+            console.log( 'nope' )
+        }
+        else {
+            this.props.history.push("/ArticleList")
+        }
     };
 
     render() {

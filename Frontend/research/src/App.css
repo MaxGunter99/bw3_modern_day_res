@@ -73,6 +73,15 @@ nav h1{
   font-family: "Impact";
 }
 
+nav h1.loggedouttitle{
+  margin-top: 10px;
+  text-decoration: underline;
+  font-family: "Impact";
+  /* -webkit-animation: focus-in-contract-bck 1.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  animation: focus-in-contract-bck 1.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both; */
+}
+
+
 .ArticleWrapper{
   margin: 0 auto;
   width: 80%;
@@ -364,3 +373,39 @@ h3.cat-head{
 .isRead{
   background-color: red;
 }
+
+
+/* @-webkit-keyframes focus-in-contract-bck {
+  0% {
+    letter-spacing: 1em;
+    -webkit-transform: translateZ(300px);
+            transform: translateZ(300px);
+    -webkit-filter: blur(12px);
+            filter: blur(12px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateZ(12px);
+            transform: translateZ(12px);
+    -webkit-filter: blur(0);
+            filter: blur(0);
+    opacity: 1;
+  }
+}
+@keyframes focus-in-contract-bck {
+  0% {
+    letter-spacing: 1em;
+    -webkit-transform: translateZ(300px);
+            transform: translateZ(300px);
+    -webkit-filter: blur(12px);
+            filter: blur(12px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateZ(12px);
+            transform: translateZ(12px);
+    -webkit-filter: blur(0);
+            filter: blur(0);
+    opacity: 1;
+  }
+} */

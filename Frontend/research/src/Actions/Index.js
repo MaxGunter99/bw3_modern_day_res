@@ -15,7 +15,7 @@ export const signUp = userInfo => dispatch => {
             console.log(res);
         })
         .catch(err => {
-            dispatch({ type: SIGN_UP_FAILURE, payload: err.message }, alert('Error'))
+            dispatch({ type: SIGN_UP_FAILURE, payload: err.message }, alert('Sign up error, please try again.'))
         })
 }
 
@@ -31,10 +31,10 @@ export const login = userInfo => dispatch => {
         .then(res => {
             dispatch({ type: SIGN_IN_SUCCESS, payload: res.data.token })
             localStorage.setItem('token', res.data.token);
-            localStorage.setItem('user_id', res.data.user_id);
+            // localStorage.setItem('user_id', res.data.user_id);
         })
         .catch(err => {
-            dispatch({ type: SIGN_IN_FAILURE, payload: err.message }, alert('Error'))
+            dispatch({ type: SIGN_IN_FAILURE, payload: err.message }, alert('Login error, please try again.'))
         })
 }
 
@@ -63,6 +63,8 @@ export const getLinks = id => dispatch => {
         .catch(err => {
             console.log(err)
             dispatch({ type: GET_LINKS_FAILURE, payload: err.message })
+            localStorage.removeItem( 'token' );
+
         })
 }
 
@@ -120,7 +122,6 @@ export const deleteLink = id => dispatch => {
         .then(res => {
             console.log(res);
             dispatch({ type: DELETE_LINK_SUCCESS, payload: res.data })
-            window.location.reload()
         })
         .catch(err => {
             console.log(err);
@@ -140,7 +141,6 @@ export const updateLink = (id, is_read) => dispatch => {
         .post( `https://rticle.herokuapp.com/api/user/${id}/read`, is_read, { headers: { Authorization: localStorage.getItem('token') } } )
         .then(response => {
             dispatch({ type: UPDATE_LINK_PASS, payload: response.data });
-            window.location.reload()
         })
         .catch(error => {
             dispatch({ type: UPDATE_LINK_FAIL, payload: error });
@@ -156,5 +156,4 @@ export const logout = () => dispatch => {
     localStorage.removeItem('token')
     localStorage.removeItem('data')
     dispatch({ type: LOGOUT_SUCCESS })
-    window.location.reload()
 }

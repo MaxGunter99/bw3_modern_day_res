@@ -20,7 +20,7 @@ class World extends Component {
                                 return(
                                     <div className='ArticleWrapper' id={link.id} key={link.id}>
                                         <div className="article" id='read'>
-                                            <h1>{link.id}</h1>
+                                            <h1>#{link.id}</h1>
                                             <h2>Category: {link.category}</h2>
                                             <p><strong>Status:</strong> {statusOfRead()}</p>
                                             <div className='buttons'>
