@@ -1,55 +1,157 @@
 .App {
   text-align: center;
+  overflow: hidden;
+}
+
+#root{
+  background-image: url('https://images.pexels.com/photos/227396/pexels-photo-227396.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+  min-height: 800px;
+  background-attachment: fixed;
 }
 
 nav.header {
-  background-color: #282c34;
+  background-color: orange;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: space-between;
   font-size: calc(10px + 2vmin);
   color: white;
-  height: 65px;
+  top: 0;
+  height: 120px;
+  width: 90%;
+  margin: 0 auto;
+  border-radius: 0 0 10px 10px;
+  /* position: fixed; */
+}
+
+nav.LoggedOutHeader {
+  background-color: orange;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  top: 0;
+  height: 130px;
+  width: 90%;
+  margin: 0 auto;
+  border-radius: 0 0 10px 10px;
+}
+
+.LoggedOutHeader div{
+  height: 38px;
+  width: 30%;
+  display: inline-flex;
+  justify-content: space-around;
+}
+
+.LoggedOutButton{
+  padding-bottom: 10px;
+}
+
+.footer {
+  background-color: orange;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: white;
+  height: 40px;
+  width: 100%;
+  margin: 0 auto;
+  border-radius: 10px 10px 0 0;
+  margin-top: 20px;
+  bottom: 0;
+  position: fixed;
+  right: center;
 }
 
 nav h1{
-  -webkit-animation: text-focus-in 1s cubic-bezier(0.550, 0.085, 0.680, 0.530) 0.5s both;
-  animation: text-focus-in 1s cubic-bezier(0.550, 0.085, 0.680, 0.530) 0.5s both;
-  margin-left: 10px;
+  margin-top: 10px;
+  text-decoration: underline;
+  font-family: "Impact";
 }
 
-@-webkit-keyframes text-focus-in {
-  0% {
-    -webkit-filter: blur(12px);
-            filter: blur(12px);
-    opacity: 0;
-  }
-  100% {
-    -webkit-filter: blur(0px);
-            filter: blur(0px);
-    opacity: 1;
-  }
-}
-@keyframes text-focus-in {
-  0% {
-    -webkit-filter: blur(12px);
-            filter: blur(12px);
-    opacity: 0;
-  }
-  100% {
-    -webkit-filter: blur(0px);
-            filter: blur(0px);
-    opacity: 1;
-  }
+nav h1.loggedouttitle{
+  margin-top: 10px;
+  text-decoration: underline;
+  font-family: "Impact";
+  /* -webkit-animation: focus-in-contract-bck 1.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  animation: focus-in-contract-bck 1.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both; */
 }
 
-.Article-wrapper{
+
+.ArticleWrapper{
   margin: 0 auto;
   width: 80%;
   word-wrap: break-word;
   border: 1px solid grey;
+  background-color: white;
   margin-top: 10px;
+  border-radius: 5px;
   padding: 10px;
+}
+
+.article .buttons{
+  display: inline-flex;
+  width: 80%;
+  justify-content: space-around;
+}
+
+.article .buttons button{
+  height: 40px;
+  border-radius: 5px;
+  border: 1px solid black;
+  font-size: 20px;
+}
+
+.article .buttons button:hover{
+  color: white;
+  background-color: black;
+}
+
+.article .buttons button a{
+  color: black;
+  text-decoration: none;
+  height: 100%;
+}
+
+.article .buttons button a:hover{
+  color: white;
+  background-color: black;
+}
+
+.ArticleWrapperComplete{
+  margin: 0 auto;
+  width: 80%;
+  word-wrap: break-word;
+  border: 1px solid white;
+  background-color: rgba(236, 73, 73, 0.644);
+  margin-top: 10px;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.notCompleted{
+  background-color: rgba(236, 73, 73, 0.644);
+  color: white;
+  font-size: 20px;
+  padding: 10px;
+}
+
+.signOut:hover{
+  background-color: red;
+}
+
+.addIt:hover{
+  background-color: green;
+}
+
+.active{
+  color: white;
+  background-color: rgba(255, 136, 0, 0.76);
+  border-radius: 5px 5px 0 0;
 }
 
 .select{
@@ -67,19 +169,42 @@ header nav{
   margin-bottom: 10px;
 }
 
+nav.header div{
+  display: inline-flex;
+  width: 100%;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
 nav a{
   color: white;
-  font-size: 30px;
-  padding: 20px;
-  border-radius: 10px 10px 0 0 ;
+  padding: 10px;
+  border-radius: 5px 5px 0 0;
   font-size: .8em;
   text-decoration: none;
+}
+
+.header{
+  padding:12px;
+  height: auto;
+}
+
+.home{
+  background-color: rgba(0, 0, 0, 0.664);
+  width: 35%;
+  margin: 0 auto;
+  padding: 20px;
+  margin-top: 40px;
+  color: white;
+  border-radius: 100px;
+  border: 1px solid white;
 }
 
 
 nav a:hover{
   background-color: white;
   color: black;
+  transition: .5s;
 }
 
 nav div h1{
@@ -113,22 +238,33 @@ nav div h1{
   border-radius: 10px;
 }
 
+.container{
+  margin-top: 20px;
+  margin-bottom: 50px;
+}
+
 .AddFormContainer{
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  width: 40%;
+  width: 45%;
   background-color: #282c34;
   color: white;
   padding: 10px;
-  border-radius: 20px;
+  border-radius: 0 0 20px 20px;
   margin: 0 auto;
-  margin-top: 50px;
+  margin-bottom: 40px;
 }
 
 .AddFormContainer input{
   height: 30px;
   margin: 10px;
+}
+
+.FormContainer{
+  background-image: url('https://images.pexels.com/photos/62693/pexels-photo-62693.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+  background-size: 100%;
+  background-attachment: fixed;
 }
 
 .form-buttons{
@@ -140,12 +276,12 @@ nav div h1{
 }
 
 .form-buttons button{
-  width: 120px;
+  width: 70%;
   border-radius: 5px;
   color: white;
-  background-color: black;
+  background-color: rgba(77, 77, 77, 0.788);
   font-size: 18px;
-  margin: 10px;
+  margin: 5px;
 }
 
 .form-buttons button:hover{
@@ -162,6 +298,7 @@ form button.submit{
   background-color: white;
   font-size: 15px;
 }
+
 form button.submit:hover{
   color: white;
   background-color: black;
@@ -170,3 +307,105 @@ form button.submit:hover{
 .formDetails{
   margin-bottom: 5px;
 }
+
+.form-wrap{
+  padding-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+h3.cat-head{
+  background-color: white;
+  color: black;
+  font-size: 1.5em;
+  width: 40%; 
+  padding: 10px;
+  margin: 0 auto;
+  border-radius: 5px;
+}
+
+.LogAndSign{
+  margin-top: 80px;
+  padding-top: 20px;
+  background-color: rgba(0, 0, 0, 0.664);
+  width: 60%;
+  border-radius: 5px;
+  padding: 10px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  border-radius: 30px;
+  border: 1px solid white;
+}
+
+.LogAndSign input{
+  width: 60%;
+  height: 20px;
+  margin: 0 auto;
+}
+
+.LogAndSign label{
+  margin: 15px;
+}
+
+.LogAndSign button{
+  width: 40%;
+  border-radius: 5px;
+  height: 30px;
+  font-size: 15px;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  color: white;
+  background-color: black;
+  border: 1px solid white;
+}
+
+.LogAndSign button:hover{
+  color: white;
+  background-color: orange;
+  border: 1px solid white;
+}
+
+.actButton{
+  margin: 0 auto;
+}
+
+.isRead{
+  background-color: red;
+}
+
+
+/* @-webkit-keyframes focus-in-contract-bck {
+  0% {
+    letter-spacing: 1em;
+    -webkit-transform: translateZ(300px);
+            transform: translateZ(300px);
+    -webkit-filter: blur(12px);
+            filter: blur(12px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateZ(12px);
+            transform: translateZ(12px);
+    -webkit-filter: blur(0);
+            filter: blur(0);
+    opacity: 1;
+  }
+}
+@keyframes focus-in-contract-bck {
+  0% {
+    letter-spacing: 1em;
+    -webkit-transform: translateZ(300px);
+            transform: translateZ(300px);
+    -webkit-filter: blur(12px);
+            filter: blur(12px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateZ(12px);
+            transform: translateZ(12px);
+    -webkit-filter: blur(0);
+            filter: blur(0);
+    opacity: 1;
+  }
+} */

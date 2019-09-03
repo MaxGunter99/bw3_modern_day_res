@@ -1,7 +1,5 @@
-import axios from "axios";
 import React from 'react';
 import ArticleList from "./components/ArticleList";
-import Article from "./components/Article";
 import ArticleForm from "./components/ArticleForm";
 import {
   Route,
@@ -10,35 +8,54 @@ import {
 import './App.css'
 import Login from "./components/Login";
 import Signup from "./components/Signup";
+import { connect } from "react-redux";
+import { getLinks, deleteLink } from './Actions/Index';
+import CompletedArticles from './components/CompletedArticles';
+import Science from './components/Categories/Science';
+import Sports from './components/Categories/Sports';
+import Art from './components/Categories/Art';
+import Local from './components/Categories/Local';
+import National from './components/Categories/National';
+import Politics from './components/Categories/Politics';
+import Religion from './components/Categories/Religion';
+import Technology from './components/Categories/Technology';
+import World from './components/Categories/World';
+import Footer from './components/Footer';
+// import Home from './components/Home';
 
 class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      links: [],
-      currentLink: null,
+      links: []
     };
   }
 
-  componentDidMount() {
-    axios
-      .get('https://rticle.herokuapp.com/api/user/articles', { headers: { Authorization: localStorage.getItem('token')}})
-      .then(res => {
-        console.log(res);
-        this.setState({
-          links: res.data
-        });
-      })
-      .catch(function (err) {
-        console.log(err);
-      });
+  gettingLinks() { this.props.getLinks(localStorage.getItem('user_id'));}
 
-    console.log("after the get request");
+  componentDidMount() {
+    this.gettingLinks()
+    // this.props.history.push("/ArticleList");
   }
+
+  deleteLink = (index) => {
+    this.props.deleteLink(index)
+    this.props.history.push("/ArticleList");
+    this.gettingLinks();
+  };
+
+  updateLink = (e, index, is_read) => {
+    e.preventDefault();
+    this.props.updateLink(index, is_read)
+    // this.gettingLinks();
+    this.props.history.push("/ArticleList");
+  };
 
   logOut = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("user_id");
     this.props.checkSignIn();
+    // e.preventDefault();
     this.props.history.push("/sign-in");
   };
 
@@ -47,19 +64,30 @@ class App extends React.Component {
       <nav className='header'>
         <h1>Modern Day Researcher</h1>
         <div>
-          <NavLink to="/ArticleList">Articles</NavLink>
-          <NavLink to="/ArticleForm">Add Article</NavLink>
-          <NavLink to='/sign-in' className='sign' onClick={this.logOut} >Log Out</NavLink>
+          <a href='https://weparkerjr.github.io/ModDayRes/'>Home</a>
+          <NavLink to="/ArticleList">All</NavLink>
+          <NavLink to='/Article-Art'>Art</NavLink>
+          <NavLink to='/Article-National'>National</NavLink>
+          <NavLink to='/Article-Local'>Local</NavLink>
+          <NavLink to='/Article-Politics'>Politics</NavLink>
+          <NavLink to='/Article-Religion'>Religion</NavLink>
+          <NavLink to='/Article-Sports'>Sports</NavLink>
+          <NavLink to='/Article-Technology'>Technology</NavLink>
+          <NavLink to='/Article-World'>World</NavLink>
+          <NavLink to='/Article-Science'>Science</NavLink>
+          <NavLink to='/CompletedArticles'>Completed</NavLink>
+          <NavLink to="/ArticleForm" className='addIt'>Add Article</NavLink>
+          <NavLink to='/sign-in' className='signOut' onClick={this.logOut} >Log Out</NavLink>
         </div>
       </nav>
     )
 
     let loggedOut = (
-      <nav className='header'>
-        <h1>Modern Day Researcher</h1>
+      <nav className='LoggedOutHeader'>
+        <h1 className='loggedouttitle'>Modern Day Researcher</h1>
         <div>
-          <NavLink to='/sign-in'>Login</NavLink>
-          <NavLink to='/sign-up'>Signup</NavLink>
+          <NavLink className='LoggedOutButton' to='/sign-in'>Login</NavLink>
+          <NavLink className='LoggedOutButton' to='/sign-up'>Signup</NavLink>
         </div>
       </nav>
     )
@@ -70,26 +98,105 @@ class App extends React.Component {
           <div className='navBar'>{loggedIn}</div>
         ) : (
             <div>{loggedOut}</div>
-          )}
-
-        <Route path='/sign-in' component={Login} />
-        <Route path='/sign-up' component={Signup} />
-
+        )}
+        <Route path='/sign-in' component= {Login} />
+        <Route path='/sign-up' component= {Signup} />
         <Route exact path="/ArticleList"
-          render={props => (
+          render={() => (
             <ArticleList
-              {...props}
               links={this.state.links}
+              deleteLink={this.deleteLink}
+              updateLink={this.updateLink}
             />
           )}
         />
-        <Route path="/ArticleList/:id"
-          render={props => (
-            <Article
-              {...props}
+        <Route exact path="/Article-Science"
+          render={() => (
+            <Science
               links={this.state.links}
-              setupUpdate={this.setupUpdate}
               deleteLink={this.deleteLink}
+              updateLink={this.updateLink}
+            />
+          )}
+        />
+        <Route exact path="/Article-Art"
+          render={() => (
+            <Art
+              links={this.state.links}
+              deleteLink={this.deleteLink}
+              updateLink={this.updateLink}
+            />
+          )}
+        />
+        <Route exact path="/Article-Local"
+          render={() => (
+            <Local
+              links={this.state.links}
+              deleteLink={this.deleteLink}
+              updateLink={this.updateLink}
+            />
+          )}
+        />
+        <Route exact path="/Article-National"
+          render={() => (
+            <National
+              links={this.state.links}
+              deleteLink={this.deleteLink}
+              updateLink={this.updateLink}
+            />
+          )}
+        />
+        <Route exact path="/Article-Politics"
+          render={() => (
+            <Politics
+              links={this.state.links}
+              deleteLink={this.deleteLink}
+              updateLink={this.updateLink}
+            />
+          )}
+        />
+        <Route exact path="/Article-Religion"
+          render={() => (
+            <Religion
+              links={this.state.links}
+              deleteLink={this.deleteLink}
+              updateLink={this.updateLink}
+            />
+          )}
+        />
+        <Route exact path="/Article-Sports"
+          render={() => (
+            <Sports
+              links={this.state.links}
+              deleteLink={this.deleteLink}
+              updateLink={this.updateLink}
+            />
+          )}
+        />
+        <Route exact path="/Article-Technology"
+          render={() => (
+            <Technology
+              links={this.state.links}
+              deleteLink={this.deleteLink}
+              updateLink={this.updateLink}
+            />
+          )}
+        />
+        <Route exact path="/Article-World"
+          render={() => (
+            <World
+              links={this.state.links}
+              deleteLink={this.deleteLink}
+              updateLink={this.updateLink}
+            />
+          )}
+        />
+        <Route exact path="/CompletedArticles"
+          render={() => (
+            <CompletedArticles
+              links={this.state.links}
+              deleteLink={this.deleteLink}
+              key={this.state.links.id}
             />
           )}
         />
@@ -103,35 +210,23 @@ class App extends React.Component {
             />
           )}
         />
+        <div className='bottomFooter'>
+          {localStorage.getItem('token') ? (
+            <Footer/>
+          ) : (<p></p>)}
+        </div>
       </div>
     );
   }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    links: state.links
+  }
+}
 
-  // deleteArticle = id => {
-  //   axios
-  //     .delete(`https://rticle.herokuapp.com/api/${id}`)
-  //     .then(res => {
-  //       this.setState({ articles: res.data });
-  //       this.props.history.push("/ArticleList");
-  //     })
-  //     .catch(err => console.log(err));
-  // };
-
-  // updateArticle = article => {
-  //   axios
-  //     .put(`https://rticle.herokuapp.com/api/${article.id}`, article)
-  //     .then(res => {
-  //       this.setState({ articles: res.data, currentArticle: null });
-  //       this.props.history.push("/ArticleList");
-  //     })
-  //     .catch(err => console.log(err));
-  // };
-
-  // setupUpdate = link => {
-  //   this.setState({ currentLink: link });
-
-  //   this.props.history.push("/ArticleForm");
-  // };
+export default connect(
+  mapStateToProps,
+  { getLinks, deleteLink }
+)(App);

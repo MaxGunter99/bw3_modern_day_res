@@ -1,4 +1,28 @@
-import { SIGN_UP, SIGN_UP_SUCCESS, SIGN_UP_FAILURE, SIGN_IN, SIGN_IN_SUCCESS, SIGN_IN_FAILURE, SIGNED_IN, SIGNED_OUT, GET_LINKS, GET_LINKS_SUCCESS, GET_LINKS_FAILURE, GET_LINK, GET_LINK_SUCCESS, GET_LINK_FAILURE, ADD_LINK, ADD_LINK_SUCCESS, ADD_LINK_FAILURE, DELETE_LINK, DELETE_LINK_SUCCESS, DELETE_LINK_FAILURE } from '../Actions/Index';
+import {
+    SIGN_UP,
+    SIGN_UP_SUCCESS,
+    SIGN_UP_FAILURE,
+    SIGN_IN,
+    SIGN_IN_SUCCESS,
+    SIGN_IN_FAILURE,
+    SIGNED_IN,
+    SIGNED_OUT,
+    GET_LINKS,
+    GET_LINKS_SUCCESS,
+    GET_LINKS_FAILURE,
+    GET_LINK,
+    GET_LINK_SUCCESS,
+    GET_LINK_FAILURE,
+    ADD_LINK,
+    ADD_LINK_SUCCESS,
+    ADD_LINK_FAILURE,
+    DELETE_LINK,
+    DELETE_LINK_SUCCESS,
+    DELETE_LINK_FAILURE,
+    UPDATE_LINK,
+    UPDATE_LINK_PASS,
+    UPDATE_LINK_FAIL
+} from '../Actions/Index';
 
 const initialState = {
     links: [],
@@ -11,7 +35,8 @@ const initialState = {
     fetchingLink: false,
     addingLink: false,
     deletingLink: false,
-    error: null,
+    updatingLink: false,
+    error: null
 }
 
 const reducer = (state = initialState, action) => {
@@ -105,6 +130,7 @@ const reducer = (state = initialState, action) => {
                 signedIn: true
             }
         case ADD_LINK_SUCCESS:
+            console.log(action.payload, 'payload')
             return {
                 ...state,
                 addingLink: false,
@@ -119,15 +145,32 @@ const reducer = (state = initialState, action) => {
         case DELETE_LINK:
             return {
                 ...state,
-                deletingLink: true
+                deletingLink: true,
+                // links: state.links.filter( (link) => link.id !== action.payload.id )
             }
         case DELETE_LINK_SUCCESS:
             return {
                 ...state,
                 deletingLink: false,
-                links: ''
+                links: state.links.filter((link) => link.id !== action.payload.id)
             }
         case DELETE_LINK_FAILURE:
+            return {
+                ...state,
+                error: action.payload
+            }
+        case UPDATE_LINK:
+            return {
+                ...state,
+                updatingLink: true,
+            }
+        case UPDATE_LINK_PASS:
+            return {
+                ...state,
+                updatingLink: false,
+                // links: state.links.filter((link) => link.id !== action.payload.id)
+            }
+        case UPDATE_LINK_FAIL:
             return {
                 ...state,
                 error: action.payload

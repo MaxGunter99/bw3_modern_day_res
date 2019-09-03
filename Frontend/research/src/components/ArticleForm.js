@@ -5,6 +5,8 @@ import { addLink } from '../Actions/Index'
 export class ArticleForm extends Component {
     state = {
         link: {
+            title: '',
+            description: '',
             url: "",
             category: "",
             user_id: '',
@@ -20,13 +22,17 @@ export class ArticleForm extends Component {
 
     handleSubmit = () => {
         const cat = this.state.category
-        this.props.addLink({ ...this.state.link, category: cat })
+        console.log({...this.state.link, category: cat})
+        this.props.addLink({ ...this.state.link, category: cat})
         this.setState({
             link: {
+                title: '',
+                description: '',
                 url: '',
                 category: '',
                 username: '',
                 user_id: localStorage.getItem('user_id'),
+                is_read: false
             }
         });
         this.props.history.push("/ArticleList");
@@ -71,16 +77,10 @@ export class ArticleForm extends Component {
 
     render() {
         return (
-            <div>
+            <div className='FormContainer'>
                 <form onSubmit={this.handleSubmit} className='AddFormContainer'>
-                    <h3 className='formDetails'>URL to an Article</h3>
-                    <input
-                        name="url"
-                        value={this.state.link.url || ''}
-                        onChange={this.handleChange}
-                        placeholder="Url"
-                        className='Input'
-                    />
+                    <h1>Add an Article</h1>
+
                     <h3 className='formDetails'>Your Username:</h3>
                     <input
                         name='username'
@@ -89,6 +89,16 @@ export class ArticleForm extends Component {
                         onChange={this.handleChange}
                         className='Input'
                     />
+                    
+                    <h3 className='formDetails'>URL of Article:</h3>
+                    <input
+                        name="url"
+                        value={this.state.link.url || ''}
+                        onChange={this.handleChange}
+                        placeholder="Url"
+                        className='Input'
+                    />
+
                     <h3 className='formDetails'>Select a Category:</h3>
                     <div className='form-buttons'>
                         <button onClick={this.cataWorld}>World</button>
@@ -101,6 +111,7 @@ export class ArticleForm extends Component {
                         <button onClick={this.cataReligion}>Religion</button>
                         <button onClick={this.cataScience}>Science</button>
                     </div>
+
                     <br />
                     <button className='submit' onClick={this.handleSubmit}>Add Article</button>
                 </form>
@@ -113,111 +124,3 @@ export default connect(
     null,
     { addLink }
 )(ArticleForm);
-
-
-// import React from "react";
-
-// export default class ArticleForm extends React.Component {
-//     state = {
-//         name: "",
-//         price: "",
-//         imageUrl: "",
-//         description: "",
-//         shipping: ""
-//     };
-
-//     componentDidMount() {
-//         if (this.props.currentArticle) {
-//             this.setState({
-//                 name: this.props.currentArticle.name,
-//                 price: this.props.currentArticle.price,
-//                 imageUrl: this.props.currentArticle.imageUrl,
-//                 description: this.props.currentArticle.description,
-//                 shipping: this.props.currentArticle.shipping
-//             });
-
-//         }
-
-//     }
-
-//     handleChange = e => {
-//         this.setState({
-//             [e.target.name]: e.target.value
-//         });
-//     };
-
-//     handleSubmit = e => {
-//         e.preventDefault();
-
-//         if (!this.props.currentArticle) {
-
-//             this.props.addArticle({
-//                 ...this.state
-//             });
-
-//         }
-
-//         else {
-
-//             this.props.updateArticle({
-//                 ...this.state,
-//                 id: this.props.currentArticle.id
-//             });
-
-//         }
-
-//         this.setState({
-//             name: "",
-//             price: "",
-//             imageUrl: "",
-//             description: "",
-//             shipping: ""
-//         });
-
-//         this.props.history.push("/ArticleList");
-//     };
-
-//     render() {
-//         return (
-//             <form onSubmit={this.handleSubmit} className='AddFormContainer'>
-//                 <input
-//                     type="text"
-//                     name="name"
-//                     value={this.state.name}
-//                     onChange={this.handleChange}
-//                     placeholder="name"
-//                 />
-//                 <input
-//                     type="text"
-//                     name="price"
-//                     value={this.state.price}
-//                     onChange={this.handleChange}
-//                     placeholder="price"
-//                 />
-//                 <input
-//                     type="text"
-//                     name="imageUrl"
-//                     value={this.state.imageUrl}
-//                     onChange={this.handleChange}
-//                     placeholder="imageUrl"
-//                 />
-//                 <input
-//                     type="text"
-//                     name="description"
-//                     value={this.state.description}
-//                     onChange={this.handleChange}
-//                     placeholder="description"
-//                 />
-//                 <input
-//                     type="text"
-//                     name="shipping"
-//                     value={this.state.shipping}
-//                     onChange={this.handleChange}
-//                     placeholder="shipping"
-//                 />
-
-//                 <button>Add Article</button>
-//             </form>
-//         );
-//     }
-// }

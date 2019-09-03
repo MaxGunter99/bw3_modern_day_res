@@ -30,11 +30,9 @@ class Signup extends Component {
     render() {
         return (
             <div className="form-wrap">
-                <div className="sign-header">
+                <form className='LogAndSign' onSubmit={this.submitDataHandler}>
                     <h3 className='cat-head'>Sign Up</h3>
-                </div>
-                <form onSubmit={this.submitDataHandler}>
-                    <label>Username</label>
+                    <label>Username:</label>
                     <input
                         id="username"
                         type="text"
@@ -44,7 +42,7 @@ class Signup extends Component {
                         className='in user'
                         placeholder="Username"
                     />
-                    <label>Password</label>
+                    <label>Password:</label>
                     <input
                         id="password"
                         type="password"
@@ -54,7 +52,7 @@ class Signup extends Component {
                         className='in pass'
                         placeholder="Password"
                     />
-                    <button onSubmit={this.submitDataHandler} className='actButton'>Sign Up! </button>
+                    <button onSubmit={this.submitDataHandler} className='actButton'>Submit</button>
                 </form>
                 <div />
             </div>
